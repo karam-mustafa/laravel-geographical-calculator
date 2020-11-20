@@ -1,0 +1,26 @@
+{
+    "name": "kmlaravel/laravel-geographical-calculator",
+    "description": "a laravel package help you to implement geographical calculation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Karam mustafa",
+            "email": "karam2mustafa@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload" : {
+        "psr-4": {
+            "KMLaravel\\GeographicalCalculator\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+    },
+    "extra" : {
+      "laravel" : {
+          "providers" : [
+              "KMLaravel\\GeographicalCalculator\\Providers\\GeographicalCalculatorServiceProviders"
+          ]
+      }
+    }
+}
