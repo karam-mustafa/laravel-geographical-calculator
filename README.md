@@ -1,4 +1,9 @@
 ## Geographical Calculator
+[![License](https://poser.pugx.org/kmlaravel/laravel-geographical-calculator/license)](//packagist.org/packages/kmlaravel/laravel-geographical-calculator)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kmlaravel/laravel-geographical-calculator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kmlaravel/laravel-geographical-calculator/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/kmlaravel/laravel-geographical-calculator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kmlaravel/laravel-geographical-calculator/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/kmlaravel/laravel-geographical-calculator/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Code Quality](https://www.code-inspector.com/project/16475/score/svg)](https://www.code-inspector.com/project/14583/score/svg)
 
 Geographical Calculator was developed for [laravel 5.8+](http://laravel.com/) to facilitate future geographical searches
 this package is implement for now a simple distance calculation between tow geographical points
