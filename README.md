@@ -29,7 +29,7 @@ Basic usage
     // define your values
     // $class = \KMLaravel\GeographicalCalculator\Facade\GeographicalCalculatorFacade::initCoordinates($firstLat , $secondLat , $firstLon , $secondLon , ['units' => ['km']]);
     $class = \KMLaravel\GeographicalCalculator\Facade\GeographicalCalculatorFacade::initCoordinates(22,33,37,40 , ['units' => ['km']]);
-    return $class->getLength();
+    return $class->getDistance();
     // the result is array contains values based on your units options insertion [ "km" => 1258.1691302282 ] 
 ```
 

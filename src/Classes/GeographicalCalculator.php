@@ -93,7 +93,7 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
      * @author karam mustafa
      * @author karam mustafa
      */
-    public function getLength(): array
+    public function getDistance(): array
     {
         // init and calc sin value
         $this->sin = $this->getAngle($this->lat1, $this->lat2, 'sin');
@@ -163,7 +163,7 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
         $result = [];
         if (isset($this->options['units']) && sizeof($this->options['units']) > 0) {
             foreach ($this->options['units'] as $unit) {
-                $this->chackIfUnitExists($unit);
+                $this->checkIfUnitExists($unit);
                 $result[$unit] = $distance * $this->units[$unit];
             }
         } else {
@@ -188,7 +188,7 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
      * @throws Exception
      * @author karam mustafa
      */
-    private function chackIfUnitExists($unit)
+    private function checkIfUnitExists($unit)
     {
         if (!isset($this->units[$unit])) {
             throw new Exception("the unit ['$unit'] dosn't aviliable in units config");

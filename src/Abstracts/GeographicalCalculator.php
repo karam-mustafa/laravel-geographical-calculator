@@ -74,11 +74,10 @@ abstract class AbstractGeographicalCalculator
     private function getAngle($val1, $val2, $angle = 'sin'){}
 
     /**
-     * @desc get final length between the given points
-     * @author karam mustafa
+     * @desc get final Distance between the given points
      * @author karam mustafa
      */
-    abstract public function getLength();
+    abstract public function getDistance();
 
     /**
      * @desc get theta angle

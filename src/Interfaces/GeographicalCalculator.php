@@ -16,9 +16,9 @@ interface GeographicalCalculatorInterface
     static function initCoordinates($lat1, $lat2, $lon1, $lon2, $options = []);
 
     /**
-     * @desc get final length between the given points
+     * @desc get final distance between the given points
      * @author karam mustafa
      * @author karam mustafa
      */
-    function getLength();
+    function getDistance();
 }
