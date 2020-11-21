@@ -115,5 +115,5 @@ abstract class AbstractGeographicalCalculator
      * @desc check if current units its aviliable in units property or config file
      * @author karam mustafa
      */
-    private function chackIfUnitExists($unit){}
+    private function checkIfUnitExists($unit){}
 }

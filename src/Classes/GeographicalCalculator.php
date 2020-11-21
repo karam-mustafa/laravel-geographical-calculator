@@ -110,7 +110,7 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
      * @return float
      * @author karam mustafa
      */
-    public function getAngle($val1, $val2, $angle = 'sin'): float
+    private function getAngle($val1, $val2, $angle = 'sin'): float
     {
         // convert the first value to radian and get result sin or cos method
         $res1 = $angle(deg2rad($val1));
@@ -191,7 +191,7 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
     private function checkIfUnitExists($unit)
     {
         if (!isset($this->units[$unit])) {
-            throw new Exception("the unit ['$unit'] dosn't aviliable in units config");
+            throw new Exception("the unit ['$unit'] dose not available in units config");
         }
     }
 }
