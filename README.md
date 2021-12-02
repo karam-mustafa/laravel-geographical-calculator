@@ -4,8 +4,7 @@
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![Code Quality](https://www.code-inspector.com/project/16475/score/svg)](https://www.code-inspector.com/project/16475/score/svg)
 
-Geographical Calculator was developed for [laravel 5.8+](http://laravel.com/) to facilitate future geographical searches
-this package is implement for now a simple distance calculation between tow geographical points
+Geographical Calculator was developed for laravel 5.8+ to facilitate future geographical searches this package is implemented for now a simple distance calculation between two geographical points
 
 Installation
 ------------
@@ -16,7 +15,7 @@ The first step is using composer to install the package and automatically update
 composer require kmlaravel/laravel-geographical-calculator
 ```
 - #### Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
-##### 2-1 - Copy the package providers to your local config with the publish command , this will publish asset and config :
+##### 2-1 - Copy the package providers to your local config with the publish command, this will publish asset and config :
 ```shell
 php artisan vendor:publish --provider="KMLaravel\GeographicalCalculator\Providers\GeographicalCalculatorServiceProviders"
 ```
@@ -47,8 +46,8 @@ config options
     |--------------------------------------------------------------------------
     | units values
     |--------------------------------------------------------------------------
-    | your custom units , the initial units its convert from mile to any value
-    | (1.609344) is the conversion factor from mile to kilometer
+    | your custom units, the initial units its convert from a mile to any value
+    | (1.609344) is the conversion factor from a mile to a kilometer
     */
     'units' => [
         'mile' => 1,
@@ -66,7 +65,7 @@ Please see the [CHANGELOG](https://github.com/kmlaravel/laravel-geographical-cal
 Security
 --------
 If you discover any security related issues, please email them first to karam2mustafa@gmail.com, 
-if we do not fix it within a short period of time please open new issue describe your problem. 
+if we do not fix it within a short period of time please open a new issue describing your problem. 
 
 Credits
 -------
