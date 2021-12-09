@@ -13,7 +13,7 @@ interface GeographicalCalculatorInterface
      * @param array $options
      * @author karam mustafa
      */
-    static function initCoordinates($lat1, $lat2, $lon1, $lon2, $options = []);
+     function initCoordinates($lat1, $lat2, $lon1, $lon2, $options = []);
 
     /**
      * @desc get final distance between the given points

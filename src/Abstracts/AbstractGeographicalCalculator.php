@@ -62,7 +62,7 @@ abstract class AbstractGeographicalCalculator
      * @param array $options
      * @author karam mustafa
      */
-     abstract static function initCoordinates($lat1, $lat2, $lon1, $lon2, $options = []);
+     abstract function initCoordinates($lat1, $lat2, $lon1, $lon2, $options = []);
 
     /**
      * @desc get the sin or cos values multiply
@@ -102,7 +102,7 @@ abstract class AbstractGeographicalCalculator
      * @param float $distance
      * @author karam mustafa
      */
-    private function resolveDistanceWithUnits(float $distance){}
+    private function resolveDistanceWithUnits($distance){}
 
     /**
      * @desc check if user chose any units
@@ -112,7 +112,7 @@ abstract class AbstractGeographicalCalculator
 
     /**
      * @param string $unit
-     * @desc check if current units its aviliable in units property or config file
+     * @desc check if current units its available in units property or config file
      * @author karam mustafa
      */
     private function checkIfUnitExists($unit){}
