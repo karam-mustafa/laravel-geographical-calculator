@@ -8,10 +8,11 @@
             "email": "karam2mustafa@gmail.com"
         }
     ],
-    "require": {},
     "autoload" : {
         "psr-4": {
-            "KMLaravel\\GeographicalCalculator\\" : "src/"
+            "KMLaravel\\GeographicalCalculator\\" : "src/",
+
+            "KMLaravel\\GeographicalCalculator\\Tests\\" : "src/tests"
         }
     },
     "autoload-dev": {
@@ -22,5 +23,8 @@
               "KMLaravel\\GeographicalCalculator\\Providers\\GeographicalCalculatorServiceProviders"
           ]
       }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
 }
