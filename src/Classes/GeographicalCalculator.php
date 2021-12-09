@@ -4,65 +4,73 @@
 namespace KMLaravel\GeographicalCalculator\Classes;
 
 use Exception;
-use KMLaravel\GeographicalCalculator\Abstracts\AbstractGeographicalCalculator;
-use KMLaravel\GeographicalCalculator\Interfaces\GeographicalCalculatorInterface;
+use KMLaravel\GeographicalCalculator\Abstracts\AbstractGeo;
+use KMLaravel\GeographicalCalculator\Interfaces\GeoInterface;
 
-class GeographicalCalculator extends AbstractGeographicalCalculator implements GeographicalCalculatorInterface
+class Geo extends AbstractGeo implements GeoInterface
 {
+    /**
+     * all the points to handle the selected requirement
+     *
+     * @author karam mustafa
+     * @var array
+     */
+    public $points = [];
+
     /**
      * first Latitude value
      *
-     * @var float|int
      * @author karam mustafa
+     * @var float|int
      */
     public $lat1;
     /**
      * second Latitude value
      *
-     * @var float|int
      * @author karam mustafa
+     * @var float|int
      */
     public $lat2;
     /**
      * first Longitude  value
      *
-     * @var float|int
      * @author karam mustafa
+     * @var float|int
      */
     public $lon1;
     /**
      * second Longitude  value
      *
-     * @var float|int
      * @author karam mustafa
+     * @var float|int
      */
     public $lon2;
     /**
      * sin value
      *
-     * @var float|int
      * @author karam mustafa
+     * @var float|int
      */
     private $sin;
     /**
      * cos value
      *
-     * @var float|int
      * @author karam mustafa
+     * @var float|int
      */
     private $cos;
     /**
      * for develop and resolve any options
      *
-     * @var array
      * @author karam mustafa
+     * @var array
      */
     private $options;
     /**
      * available units
      *
-     * @var array
      * @author karam mustafa
+     * @var array
      */
     private $units = [
         'mile' => 1,
@@ -71,15 +79,38 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
         'cm' => (1.609344 * 100),
         'mm' => (1.609344 * 1000 * 1000),
     ];
+    /**
+     * @return array
+     * @author karam mustaf
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * @param  array  $points
+     *
+     * @return Geo
+     * @author karam mustaf
+     */
+    public function setPoints($points)
+    {
+        $this->points[] = $points;
+
+        return $this;
+    }
 
     /**
      * instance constructor.
+     *
      * @param $lat1
      * @param $lat2
      * @param $lon1
      * @param $lon2
-     * @param array $options
-     * @return GeographicalCalculator
+     * @param  array  $options
+     *
+     * @return Geo
      * @author karam mustafa
      */
     public function initCoordinates($lat1, $lat2, $lon1, $lon2, $options = [])
@@ -117,7 +148,8 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
      *
      * @param $val1
      * @param $val2
-     * @param string $angle
+     * @param  string  $angle
+     *
      * @return float
      * @author karam mustafa
      */
@@ -156,6 +188,7 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
 
     /**
      * @param $distance
+     *
      * @return float
      * @author karam mustafa
      */
@@ -167,7 +200,8 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
     /**
      * check if user chose any units
      *
-     * @param float $distance
+     * @param  float  $distance
+     *
      * @return array
      * @throws Exception
      * @author karam mustafa
@@ -193,11 +227,13 @@ class GeographicalCalculator extends AbstractGeographicalCalculator implements G
      */
     private function resolveUnits()
     {
-        if (config('geographical_calculator.units')) $this->units = config('geographical_calculator.units');
+        if (config('geographical_calculator.units')) {
+            $this->units = config('geographical_calculator.units');
+        }
     }
 
     /**
-     * @param string $unit
+     * @param  string  $unit
      * check if current units its available in units property or config file
      *
      * @return boolean

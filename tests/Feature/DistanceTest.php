@@ -2,7 +2,7 @@
 
 namespace KMLaravel\GeographicalCalculator\Tests\Feature;
 
-use KMLaravel\GeographicalCalculator\Facade\GeographicalCalculatorFacade;
+use KMLaravel\GeographicalCalculator\Facade\GeoFacade;
 use PHPUnit\Framework\TestCase;
 
 class DistanceTest extends TestCase
@@ -15,7 +15,7 @@ class DistanceTest extends TestCase
      */
     public function test_distance()
     {
-        $class = GeographicalCalculatorFacade::initCoordinates(22, 33, 37, 40, ['units' => ['km']]);
+        $class = GeoFacade::initCoordinates(22, 33, 37, 40, ['units' => ['km']]);
         $this->assertEquals([ "km" => 1258.1691302282 ], $class->getDistance());
     }
 }

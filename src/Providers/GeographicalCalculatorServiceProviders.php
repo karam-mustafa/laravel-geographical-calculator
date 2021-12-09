@@ -2,7 +2,7 @@
 
 namespace KMLaravel\GeographicalCalculator\Providers;
 use Illuminate\Support\ServiceProvider;
-use KMLaravel\GeographicalCalculator\Classes\GeographicalCalculator;
+use KMLaravel\GeographicalCalculator\Classes\Geo;
 
 class GeographicalCalculatorServiceProviders extends ServiceProvider
 {
@@ -17,8 +17,8 @@ class GeographicalCalculatorServiceProviders extends ServiceProvider
      */
     protected function registerFacades()
     {
-        $this->app->singleton("GeographicalCalculatorFacade" , function ($app){
-            return new GeographicalCalculator();
+        $this->app->singleton("GeoFacade" , function ($app){
+            return new Geo();
         });
     }
 

@@ -3,7 +3,7 @@
 
 namespace KMLaravel\GeographicalCalculator\Abstracts;
 
-abstract class AbstractGeographicalCalculator
+abstract class AbstractGeo
 {
     /**
      * @desc first Latitude value

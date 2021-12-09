@@ -3,7 +3,7 @@
 
 namespace KMLaravel\GeographicalCalculator\Interfaces;
 
-interface GeographicalCalculatorInterface
+interface GeoInterface
 {
     /**
      * @param $lat1
