@@ -79,6 +79,7 @@ class Geo extends AbstractGeo implements GeoInterface
         'cm' => (1.609344 * 100),
         'mm' => (1.609344 * 1000 * 1000),
     ];
+
     /**
      * @return array
      * @author karam mustaf
@@ -89,6 +90,19 @@ class Geo extends AbstractGeo implements GeoInterface
     }
 
     /**
+     * @param $point
+     *
+     * @return Geo
+     * @author karam mustaf
+     */
+    public function setPoint($point)
+    {
+        $this->points[] = $point;
+
+        return $this;
+    }
+
+    /**
      * @param  array  $points
      *
      * @return Geo
@@ -96,7 +110,7 @@ class Geo extends AbstractGeo implements GeoInterface
      */
     public function setPoints($points)
     {
-        $this->points[] = $points;
+        $this->points = array_merge($this->points, $points);
 
         return $this;
     }
