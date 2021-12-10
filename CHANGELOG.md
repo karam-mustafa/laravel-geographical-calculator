@@ -4,6 +4,8 @@ v2.0.0
 * add points property
 * handle add points to calculate distance
 * add install command
+* add documents folder
+
 
 
 v1.1.0
