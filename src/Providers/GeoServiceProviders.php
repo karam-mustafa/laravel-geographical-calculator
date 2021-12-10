@@ -4,16 +4,18 @@ namespace KMLaravel\GeographicalCalculator\Providers;
 use Illuminate\Support\ServiceProvider;
 use KMLaravel\GeographicalCalculator\Classes\Geo;
 
-class GeographicalCalculatorServiceProviders extends ServiceProvider
+class GeoServiceProviders extends ServiceProvider
 {
 
     public function boot(){
         $this->registerFacades();
         $this->publishesPackages();
     }
+
     public function register(){}
+
     /**
-     *
+     * register facades dependence's
      */
     protected function registerFacades()
     {
