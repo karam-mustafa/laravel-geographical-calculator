@@ -14,13 +14,12 @@ The first step is using composer to install the package and automatically update
 ```shell
 composer require kmlaravel/laravel-geographical-calculator
 ```
-- #### Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+> ###### Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
 ##### 2-1 - Copy the package providers to your local config with the publish command, this will publish asset and config :
 ```shell
 php artisan vendor:publish --provider="KMLaravel\GeographicalCalculator\Providers\GeographicalCalculatorServiceProviders"
 ```
-- #### or you may publish asset and config separately.
-##### 2-2 - Copy the package config to your local config with the publish command:
+##### 2-2 - Or you may Copy the package config to your local config with the publish command:
 ```shell
 php artisan vendor:publish --tag=geographical-calculator-config
 ```
