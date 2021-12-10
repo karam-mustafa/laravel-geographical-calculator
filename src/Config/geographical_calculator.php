@@ -6,7 +6,8 @@ return [
     |--------------------------------------------------------------------------
     | units values
     |--------------------------------------------------------------------------
-    | your custom units , the initial units its convert from mile to any value
+    | your custom units , the initial units its convert from mile to any value.
+    |
     */
     'units' => [
         'mile' => 1,
