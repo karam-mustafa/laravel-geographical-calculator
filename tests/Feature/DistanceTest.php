@@ -15,7 +15,11 @@ class DistanceTest extends TestCase
      */
     public function test_distance()
     {
-        $class = GeoFacade::initCoordinates(22, 33, 37, 40, ['units' => ['km']]);
-        $this->assertEquals([ "km" => 1258.1691302282 ], $class->getDistance());
+        $result = GeoFacade::setPoint([22, 37])
+            ->setOptions(['units' => ['km']])
+            ->setPoint([33, 40])
+            ->getDistance();
+
+        $this->assertEquals([ "km" => 1258.1691302282 ] , $result);
     }
 }
