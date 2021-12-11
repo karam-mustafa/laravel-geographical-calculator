@@ -6,14 +6,12 @@ namespace KMLaravel\GeographicalCalculator\Interfaces;
 interface GeoInterface
 {
     /**
-     * @param $lat1
-     * @param $lat2
-     * @param $lon1
-     * @param $lon2
-     * @param array $options
+     *
+     * @param  array  $point
+     *
      * @author karam mustafa
      */
-     function initCoordinates($lat1, $lat2, $lon1, $lon2, $options = []);
+    function setPoint($point);
 
     /**
      * @desc get final distance between the given points
