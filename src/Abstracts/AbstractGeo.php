@@ -62,6 +62,13 @@ abstract class AbstractGeo
         'cm' => (1.609344 * 100),
         'mm' => (1.609344 * 1000 * 1000),
     ];
+    /**
+     * for develop and resolve any options
+     *
+     * @author karam mustafa
+     * @var array
+     */
+    private $options;
 
     /**
      * @return float|int
@@ -138,14 +145,6 @@ abstract class AbstractGeo
 
         return $this;
     }
-
-    /**
-     * for develop and resolve any options
-     *
-     * @author karam mustafa
-     * @var array
-     */
-    private $options;
 
     /**
      * @return array
