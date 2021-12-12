@@ -15,14 +15,26 @@ The first step is using composer to install the package and automatically update
 ```shell
 composer require kmlaravel/laravel-geographical-calculator
 ```
-##### 2 - Copy the package providers to your local config with the publish command, this will publish the config:
+> ###### Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+##### 2-1 - Copy the package providers to your local config with the publish command, this will publish asset and config :
 ```shell
-php artisan geo:install
+php artisan vendor:publish --provider="KMLaravel\GeographicalCalculator\Providers\GeographicalCalculatorServiceProviders"
+```
+##### 2-2 - Or you may Copy the package config to your local config with the publish command:
+```shell
+php artisan vendor:publish --tag=geographical-calculator-config
 ```
 
-Features
+Basic usage
 -----------
-- [Distance](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distance.md)
+##### basic example
+```php
+    // define your values
+    // $class = \KMLaravel\GeographicalCalculator\Facade\GeographicalCalculatorFacade::initCoordinates($firstLat , $secondLat , $firstLon , $secondLon , ['units' => ['km']]);
+    $class = \KMLaravel\GeographicalCalculator\Facade\GeographicalCalculatorFacade::initCoordinates(22,33,37,40 , ['units' => ['km']]);
+    return $class->getDistance();
+    // the result is array contains values based on your units options insertion [ "km" => 1258.1691302282 ] 
+```
 
 
 config options
