@@ -3,115 +3,254 @@
 
 namespace KMLaravel\GeographicalCalculator\Abstracts;
 
+
+/**
+ * Class AbstractGeo
+ *
+ * @author karam mustafa
+ * @package KMLaravel\GeographicalCalculator\Abstracts
+ */
 abstract class AbstractGeo
 {
     /**
-     * @desc first Latitude value
-     * @var float|int
+     *
      * @author karam mustafa
+     * @var array
      */
-    public $lat1;
+    private $longs = [];
     /**
-     * @desc second Latitude value
-     * @var float|int
+     * all the points to handle the selected requirement
+     *
      * @author karam mustafa
+     * @var array
      */
-    public $lat2;
+    public $points = [];
+
     /**
-     * @desc first Longitude  value
-     * @var float|int
+     * sin value
+     *
      * @author karam mustafa
-     */
-    public $lon1;
-    /**
-     * @desc second Longitude  value
      * @var float|int
-     * @author karam mustafa
-     */
-    public $lon2;
-    /**
-     * @desc sin value
-     * @var float|int
-     * @author karam mustafa
      */
     private $sin;
+
     /**
-     * @desc cos value
-     * @var float|int
+     * results
+     *
      * @author karam mustafa
+     * @var array
+     */
+    private $result = [];
+
+    /**
+     * cos value
+     *
+     * @author karam mustafa
+     * @var float|int
      */
     private $cos;
     /**
-     * @desc for develop and resolve any options
-     * @var array
+     * available units
+     *
      * @author karam mustafa
+     * @var array
+     */
+    private $units = [
+        'mile' => 1,
+        'km' => 1.609344,
+        'm' => (1.609344 * 1000),
+        'cm' => (1.609344 * 100),
+        'mm' => (1.609344 * 1000 * 1000),
+    ];
+
+    /**
+     * @return float|int
+     * @author karam mustaf
+     */
+    public function getSin()
+    {
+        return $this->sin;
+    }
+
+    /**
+     * @param  float|int  $sin
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function setSin($sin)
+    {
+        $this->sin = $sin;
+
+        return $this;
+    }
+
+    /**
+     * @return float|int
+     * @author karam mustaf
+     */
+    public function getCos()
+    {
+        return $this->cos;
+    }
+
+    /**
+     * @param  float|int  $cos
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function setCos($cos)
+    {
+        $this->cos = $cos;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     * @author karam mustaf
+     */
+    public function getLongs()
+    {
+        return $this->longs;
+    }
+
+    /**
+     * get the available units.
+     *
+     * @return array
+     * @author karam mustafa
+     */
+    public function getUnits()
+    {
+        return $this->units;
+    }
+
+    /**
+     * @param  array  $units
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function setUnits($units)
+    {
+        $this->units = $units;
+
+        return $this;
+    }
+
+    /**
+     * for develop and resolve any options
+     *
+     * @author karam mustafa
+     * @var array
      */
     private $options;
-    /**
-     * @desc available units
-     * @var array
-     * @author karam mustafa
-     */
-    private $units = [];
 
     /**
+     * @return array
+     * @author karam mustaf
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param  array  $options
      *
-     * @param array $point
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
      *
-     * @author karam mustafa
+     * @author karam mustaf
      */
-     abstract function setPoint($point);
+    public function getResult()
+    {
+        return $this->result;
+    }
 
     /**
-     * @desc get the sin or cos values multiply
-     * @param $val1
-     * @param $val2
-     * @param string $angle
-     * @author karam mustafa
+     * @param  mixed  $result
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
      */
-    private function getAngle($val1, $val2, $angle = 'sin'){}
+    public function setResult($result)
+    {
+        $this->result = array_merge($this->result, $result);
+
+        return $this;
+    }
 
     /**
-     * @desc get final Distance between the given points
+     * @return array
+     * @author karam mustaf
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * @param $point
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function setPoint($point)
+    {
+        $this->points[] = $point;
+
+        return $this;
+    }
+
+    /**
+     * @param  array  $points
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function setPoints($points)
+    {
+        $this->points = array_merge($this->points, $points);
+
+        return $this;
+    }
+
+    /**
+     * @param $val
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function setLongitude($val)
+    {
+        $this->longs[] = $val;
+
+        return $this;
+    }
+
+    /**
+     * get final Distances between the given points.
+     *
      * @author karam mustafa
      */
     abstract public function getDistance();
 
     /**
-     * @desc get theta angle
+     * get final Distances between the given points.
+     *
      * @author karam mustafa
      */
-    private function getValueForAngleBetween(){}
-
-    /**
-     * @desc calculation distance process
-     * @author karam mustafa
-     */
-    private function calcDistance(){}
-
-    /**
-     * @param $distance
-     * @author karam mustafa
-     */
-    private function correctDistanceValue($distance){}
-
-    /**
-     * @desc check if user chose any units
-     * @param float $distance
-     * @author karam mustafa
-     */
-    private function resolveDistanceWithUnits($distance){}
-
-    /**
-     * @desc check if user chose any units
-     * @author karam mustafa
-     */
-    private function resolveUnits(){}
-
-    /**
-     * @param string $unit
-     * @desc check if current units its available in units property or config file
-     * @author karam mustafa
-     */
-    private function checkIfUnitExists($unit){}
+    abstract public function getCenter();
 }
