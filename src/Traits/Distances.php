@@ -26,17 +26,17 @@ trait Distances
                 $this->setSin($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'sin'))
                     ->setCos($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'cos'))
                     // set the position of this loop at the local storage.
-                    ->setInLocalStorage('position', ($index + 1).'-'.($index + 2), ['new' => true])
+                    ->setInStorage('position', ($index + 1).'-'.($index + 2), ['new' => true])
                     // set first longitude.
                     ->setLongitude($point[1])
                     // set second longitude.
                     ->setLongitude($this->getPoints()[$index + 1][1])
                     // set the formatted key that bind with the prefix config.
-                    ->setInLocalStorage('distance_key',
-                        $this->formatDistanceKey($this->getFromLocalStorage('position'))
+                    ->setInStorage('distance_key',
+                        $this->formatDistanceKey($this->getFromStorage('position'))
                     )
                     // save the results.
-                    ->setResult([$this->getFromLocalStorage('distance_key') => $this->calcDistance()]);
+                    ->setResult([$this->getFromStorage('distance_key') => $this->calcDistance()]);
             }
 
         }
@@ -117,13 +117,13 @@ trait Distances
                 // check if the unit isset.
                 $this->checkIfUnitExists($unit)
                     // set the result in storage.
-                    ->setInLocalStorage($unit, $distance * $this->getUnits()[$unit]);
+                    ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
             }
         } else {
             // if there are not units, then get the default units property.
-            $this->setInLocalStorage('mile', $distance * $this->getUnits()['mile']);
+            $this->setInStorage('mile', $distance * $this->getUnits()['mile']);
         }
         // remove un required results and get the results from storage.
-        return $this->removeFromLocalStorage('position', 'distance_key')->getFromLocalStorage();
+        return $this->removeFromStorage('position', 'distance_key')->getFromStorage();
     }
 }
