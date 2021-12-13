@@ -1,4 +1,7 @@
-##### Get the distance between unlimited points:
+##### Usage:
+
+Basic usage
+----------
 ```php
     // Define your values
     $distance =  \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
@@ -25,6 +28,12 @@
             //  and so on.
             ->getDistance();
 
+    return $distance;
+```
+
+Options
+---------------
+```php
     // If you set multiline units, the result will be each unit with the distance.
      $distanceWithMultiUnits  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
             ->setPoint([33, 40])
@@ -32,7 +41,18 @@
             ->setOptions(['units' => ['km' , 'mile' , 'm' , 'cm']])
             ->getDistance();
     // the result will be [  "km" => 1258.1691302282, "mile" => 781.79005248609, "m" => 1258169.1302282, "cm" => 125816.91302282]
-    
-
-    return $distance;
+     return $distanceWithMultiUnits;
+```
+All points at once
+---------------
+```php
+    // instead of calling setPoint each time
+    // you can set your points at once.
+     $allPoints  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
+            ->setPoints([
+                [22, 37],
+                [33, 40],
+                // .... other points
+            ])->getDistance();
+     return $allPoints;
 ```
