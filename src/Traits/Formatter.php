@@ -15,6 +15,7 @@ trait Formatter
      */
     private function formatDistanceKey($key)
     {
-        return config('geographical_calculator.distance_key_prefix') ?? ""."$key";
+        $prefix = config('geographical_calculator.distance_key_prefix');
+        return $prefix.$key;
     }
 }
