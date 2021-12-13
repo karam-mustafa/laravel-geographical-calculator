@@ -36,9 +36,7 @@ trait Distances
                         $this->formatDistanceKey($this->getFromLocalStorage('position'))
                     )
                     // save the results.
-                    ->setResult([$this->getFromLocalStorage('distance_key') => $this->calcDistance()])
-                    // remove the saved keys in storage, because we dont want to return these values.
-                    ->removeFromLocalStorage('position', 'distance_key');
+                    ->setResult([$this->getFromLocalStorage('distance_key') => $this->calcDistance()]);
             }
 
         }
@@ -114,15 +112,18 @@ trait Distances
         $options = $this->getOptions();
 
         if (isset($options['units']) && sizeof($options['units']) > 0) {
-
+            // loop in each unit and solve the distance.
             foreach ($options['units'] as $unit) {
+                // check if the unit isset.
                 $this->checkIfUnitExists($unit)
+                    // set the result in storage.
                     ->setInLocalStorage($unit, $distance * $this->getUnits()[$unit]);
             }
-
         } else {
+            // if there are not units, then get the default units property.
             $this->setInLocalStorage('mile', $distance * $this->getUnits()['mile']);
         }
+        // remove un required results and get the results from storage.
         return $this->removeFromLocalStorage('position', 'distance_key')->getFromLocalStorage();
     }
 }
