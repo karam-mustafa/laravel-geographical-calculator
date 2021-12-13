@@ -3,13 +3,11 @@
     // Define your values
     $distance =  \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
             // add your options, the default value for the unit is mile.
-
             ->setOptions(['units' => ['km']])
 
             // you can set unlimited points.
             // ->setPoint([lat, long])
             // ->setPoint([lat, long])
-
             ->setPoint([33, 40])
 
             // get the calculated distance.
@@ -17,12 +15,15 @@
             // this package will return the distance between a first and a second point.
             // a second and a third point.
             // a third and a fourth point and so on.
-            // each result will returned  with the index of each point
-            // for example, the first and second point you add will shown like this
+            // each result will returned  with the index of each point.
+            // and you can specify the prefix before the key of each returned,
+            // by change the distance_key_prefix key from a config class.
+            // for example, the first and second point you add will shown like this:
             // "1-2" => ["km" => 1258.1691302282]
-
+            // the second and third point you add will shown like this:
+            // "2-3" => ["km" => 1258.1691302282]
+            //  and so on.
             ->getDistance();
-    // The result is array contains values based on your units options insertion [ "km" => 1258.1691302282 ] 
 
     // If you set multiline units, the result will be each unit with the distance.
      $distanceWithMultiUnits  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
