@@ -23,14 +23,14 @@ trait Distances
             // check if we are not arrive to the last point yet.
             if (isset($this->getPoints()[$index + 1])) {
                 // init and calc sin and cos value
-                $this->setSin($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'sin'))
-                    ->setCos($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'cos'))
+                $this->setSin($this->getAngle($point[0], $this->getPoints($index + 1)[0], 'sin'))
+                    ->setCos($this->getAngle($point[0], $this->getPoints($index + 1)[0], 'cos'))
                     // set the position of this loop at the local storage.
                     ->setInStorage('position', ($index + 1).'-'.($index + 2), ['new' => true])
                     // set first longitude.
                     ->setLongitude($point[1])
                     // set second longitude.
-                    ->setLongitude($this->getPoints()[$index + 1][1])
+                    ->setLongitude($this->getPoints($index + 1)[1])
                     // set the formatted key that bind with the prefix config.
                     ->setInStorage('distance_key',
                         $this->formatDistanceKey($this->getFromStorage('position'))
