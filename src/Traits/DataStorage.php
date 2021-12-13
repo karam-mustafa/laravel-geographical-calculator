@@ -7,12 +7,12 @@ namespace KMLaravel\GeographicalCalculator\Traits;
 use KMLaravel\GeographicalCalculator\Abstracts\AbstractGeo;
 
 /**
- * Trait LocalStorage
+ * Trait DataStorage
  *
  * @author karam mustafa
  * @package KMLaravel\GeographicalCalculator\Traits
  */
-trait LocalStorage
+trait DataStorage
 {
 
     /**
@@ -45,7 +45,7 @@ trait LocalStorage
     /**
      * @param  mixed  $result
      *
-     * @return LocalStorage
+     * @return DataStorage
      * @author karam mustaf
      */
     public function setResult($result)
@@ -62,7 +62,7 @@ trait LocalStorage
      *
      * @author karam mustaf
      */
-    public function getFromLocalStorage($key = null)
+    public function getFromStorage($key = null)
     {
         return isset($this->localStorage[$key])
             ? $this->localStorage[$key]
@@ -75,10 +75,10 @@ trait LocalStorage
      *
      * @param  array  $options
      *
-     * @return LocalStorage
+     * @return DataStorage
      * @author karam mustaf
      */
-    public function setInLocalStorage($key, $value, $options = ['new' => false])
+    public function setInStorage($key, $value, $options = ['new' => false])
     {
         $this->localStorage[$key] = $value;
 
@@ -86,10 +86,11 @@ trait LocalStorage
     }
 
     /**
-     * @return LocalStorage
+     *
+     * @return DataStorage
      * @author karam mustaf
      */
-    public function clearLocalStorage()
+    public function clearStorage()
     {
         $this->localStorage = [];
 
@@ -99,10 +100,10 @@ trait LocalStorage
     /**
      * @param  mixed  $keys
      *
-     * @return LocalStorage
+     * @return DataStorage
      * @author karam mustaf
      */
-    public function removeFromLocalStorage(...$keys)
+    public function removeFromStorage(...$keys)
     {
         foreach ($keys as $key) {
             if (isset($this->localStorage[$key])) {
