@@ -7,6 +7,8 @@ use Exception;
 
 trait Distances
 {
+    use LocalStorage, Formatter, Debugger;
+
     /**
      * get final length between the given points
      *
@@ -17,29 +19,30 @@ trait Distances
      */
     public function getDistance()
     {
-        $position = '';
-
         foreach ($this->getPoints() as $index => $point) {
-
+            // check if we are not arrive to the last point yet.
             if (isset($this->getPoints()[$index + 1])) {
                 // init and calc sin and cos value
-                $this
-                    ->setSin($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'sin'))
-                    ->setCos($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'cos'));
-
-                $position = ($index + 1).'-'.($index + 2);
-
-                $this->setLongitude($point[1])
+                $this->setSin($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'sin'))
+                    ->setCos($this->getAngle($point[0], $this->getPoints()[$index + 1][0], 'cos'))
+                    // set the position of this loop at the local storage.
+                    ->setInLocalStorage('position', ($index + 1).'-'.($index + 2), ['new' => true])
+                    // set first longitude.
+                    ->setLongitude($point[1])
+                    // set second longitude.
                     ->setLongitude($this->getPoints()[$index + 1][1])
+                    // set the formatted key that bind with the prefix config.
+                    ->setInLocalStorage('distance_key',
+                        $this->formatDistanceKey($this->getFromLocalStorage('position'))
+                    )
                     // save the results.
-                    ->setResult(["$position" => $this->calcDistance()]);
+                    ->setResult([$this->getFromLocalStorage('distance_key') => $this->calcDistance()])
+                    // remove the saved keys in storage, because we dont want to return these values.
+                    ->removeFromLocalStorage('position', 'distance_key');
             }
 
         }
-
-        return sizeof($this->getResult()) == 1
-            ? $this->getResult()["$position"]
-            : $this->getResult();
+        return $this->getResult();
     }
 
     /**
@@ -107,20 +110,19 @@ trait Distances
      */
     private function resolveDistanceWithUnits($distance)
     {
-        $result = [];
 
         $options = $this->getOptions();
 
         if (isset($options['units']) && sizeof($options['units']) > 0) {
 
             foreach ($options['units'] as $unit) {
-                $this->checkIfUnitExists($unit);
-                $result[$unit] = $distance * $this->getUnits()[$unit];
+                $this->checkIfUnitExists($unit)
+                    ->setInLocalStorage($unit, $distance * $this->getUnits()[$unit]);
             }
 
         } else {
-            $result['mile'] = $distance * $this->getUnits()['mile'];
+            $this->setInLocalStorage('mile', $distance * $this->getUnits()['mile']);
         }
-        return $result;
+        return $this->removeFromLocalStorage('position', 'distance_key')->getFromLocalStorage();
     }
 }
