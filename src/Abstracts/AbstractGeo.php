@@ -34,13 +34,6 @@ abstract class AbstractGeo
      */
     private $sin;
 
-    /**
-     * results
-     *
-     * @author karam mustafa
-     * @var array
-     */
-    private $result = [];
 
     /**
      * cos value
@@ -167,30 +160,6 @@ abstract class AbstractGeo
 
         return $this;
     }
-
-    /**
-     * @return mixed
-     *
-     * @author karam mustaf
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * @param  mixed  $result
-     *
-     * @return AbstractGeo
-     * @author karam mustaf
-     */
-    public function setResult($result)
-    {
-        $this->result = array_merge($this->result, $result);
-
-        return $this;
-    }
-
     /**
      * @return array
      * @author karam mustaf
