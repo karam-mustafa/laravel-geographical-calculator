@@ -3,6 +3,7 @@
 namespace KMLaravel\GeographicalCalculator\Providers;
 use Illuminate\Support\ServiceProvider;
 use KMLaravel\GeographicalCalculator\Classes\Geo;
+use KMLaravel\GeographicalCalculator\Commands\InstallCommand;
 
 class GeoServiceProviders extends ServiceProvider
 {
@@ -10,6 +11,7 @@ class GeoServiceProviders extends ServiceProvider
     public function boot(){
         $this->registerFacades();
         $this->publishesPackages();
+        $this->resolveCommands();
     }
 
     public function register(){}
@@ -33,6 +35,20 @@ class GeoServiceProviders extends ServiceProvider
         $this->publishes([
             __DIR__."/../Config/geographical_calculator.php" => config_path("geographical_calculator.php")
         ] , "geographical-calculator-config");
+    }
+
+    /**
+     *
+     *
+     * @author karam mustafa
+     */
+    private function resolveCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallCommand::class,
+            ]);
+        }
     }
 
 }
