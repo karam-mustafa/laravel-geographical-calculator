@@ -26,7 +26,7 @@ trait Distances
                 $this->setSin($this->getAngle($point[0], $this->getPoints($index + 1)[0], 'sin'))
                     ->setCos($this->getAngle($point[0], $this->getPoints($index + 1)[0], 'cos'))
                     // set the position of this loop at the local storage.
-                    ->setInStorage('position', ($index + 1).'-'.($index + 2), ['new' => true])
+                    ->setInStorage('position', ($index + 1).'-'.($index + 2))
                     // set first longitude.
                     ->setLongitude($point[1])
                     // set second longitude.
