@@ -25,7 +25,6 @@ abstract class AbstractGeo
      * @var array
      */
     public $points = [];
-
     /**
      * sin value
      *
@@ -33,8 +32,6 @@ abstract class AbstractGeo
      * @var float|int
      */
     private $sin;
-
-
     /**
      * cos value
      *
@@ -162,6 +159,8 @@ abstract class AbstractGeo
     }
 
     /**
+     * @param  null  $index
+     *
      * @return array
      * @author karam mustaf
      */
