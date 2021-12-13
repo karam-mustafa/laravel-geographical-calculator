@@ -3,9 +3,6 @@
 
 namespace KMLaravel\GeographicalCalculator\Traits;
 
-
-use KMLaravel\GeographicalCalculator\Abstracts\AbstractGeo;
-
 /**
  * Trait DataStorage
  *
@@ -78,7 +75,7 @@ trait DataStorage
      * @return DataStorage
      * @author karam mustaf
      */
-    public function setInStorage($key, $value, $options = ['new' => false])
+    public function setInStorage($key, $value, $options = [])
     {
         $this->localStorage[$key] = $value;
 
