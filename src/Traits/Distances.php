@@ -7,7 +7,7 @@ use Exception;
 
 trait Distances
 {
-    use LocalStorage, Formatter, Debugger;
+    use DataStorage, Formatter, Debugger;
 
     /**
      * get final length between the given points
