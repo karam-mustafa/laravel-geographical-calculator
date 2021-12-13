@@ -160,13 +160,16 @@ abstract class AbstractGeo
 
         return $this;
     }
+
     /**
      * @return array
      * @author karam mustaf
      */
-    public function getPoints()
+    public function getPoints($index = null)
     {
-        return $this->points;
+        return isset($this->points[$index])
+            ? $this->points[$index]
+            : $this->points;
     }
 
     /**
