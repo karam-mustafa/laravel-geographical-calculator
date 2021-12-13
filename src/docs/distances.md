@@ -53,6 +53,10 @@ All points at once
                 [22, 37],
                 [33, 40],
                 // .... other points
-            ])->getDistance();
+            ])
+            // and of course you still can use getPoint again if you want.
+            ->setPoint([33, 40])
+            ->getDistance();
+
      return $allPoints;
 ```
