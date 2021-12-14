@@ -137,12 +137,16 @@ abstract class AbstractGeo
     }
 
     /**
+     * @param  mixed  $key
+     *
      * @return array
      * @author karam mustaf
      */
-    public function getOptions()
+    public function getOptions($key = null)
     {
-        return $this->options;
+        return isset($this->options[$key])
+            ? $this->options[$key]
+            : $this->options;
     }
 
     /**
@@ -207,6 +211,24 @@ abstract class AbstractGeo
     {
         $this->longs[] = $val;
 
+        return $this;
+    }
+
+    /**
+     * @param  mixed  $condition
+     *
+     * @param  null|callable  $callback
+     *
+     * @return AbstractGeo
+     * @author karam mustaf
+     */
+    public function checkIf($condition, $callback = null)
+    {
+        if (isset($condition)) {
+            if (isset($callback)) {
+                return $callback();
+            }
+        }
         return $this;
     }
 
