@@ -14,9 +14,18 @@ interface GeoInterface
     function setPoint($point);
 
     /**
-     * @desc get final distance between the given points
+     * Finding the distance of points using several given coordinate points.
+     *
      * @author karam mustafa
      * @author karam mustafa
      */
     function getDistance();
+
+    /**
+     * Finding the center of points using several given coordinate points
+     *
+     * @author karam mustafa
+     * @author karam mustafa
+     */
+    function getCenter();
 }
