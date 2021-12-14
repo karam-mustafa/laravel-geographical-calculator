@@ -17,6 +17,7 @@ trait Areas
 
         // set points count in the storage.
         $this->setInStorage('pointsCount', count($this->getPoints()));
+
         // check if there are points or not.
         if (!$this->getFromStorage('pointsCount')) {
             return false;
@@ -29,16 +30,16 @@ trait Areas
         foreach ($this->getPoints() as $point) {
             // set lat and long
             $this->setInStorage('lat', $point[0] * pi() / 180);
-            $this->setInStorage('lon', $point[0] * pi() / 180);
+            $this->setInStorage('long', $point[1] * pi() / 180);
             // set x,y,z
             $this->setInStorage('x',
                 (
                     $this->getFromStorage('x') +
-                    cos($this->getFromStorage('lat')) * cos($this->getFromStorage('lon')))
+                    cos($this->getFromStorage('lat')) * cos($this->getFromStorage('long')))
             )->setInStorage('y',
                 (
                     $this->getFromStorage('y') +
-                    cos($this->getFromStorage('lat')) * sin($this->getFromStorage('lon'))
+                    cos($this->getFromStorage('lat')) * sin($this->getFromStorage('long'))
                 )
             )->setInStorage('z', (
                 $this->getFromStorage('z') +
@@ -95,15 +96,13 @@ trait Areas
     {
         $this->setInStorage('long', atan2(
             $this->getFromStorage('y'), $this->getFromStorage('x')
-        ))->setInStorage('multiplied y',
+        ))->setInStorage('multiplied y', 
             ($this->getFromStorage('y') * $this->getFromStorage('y'))
         )->setInStorage('multiplied x',
             ($this->getFromStorage('x') * $this->getFromStorage('x'))
         )->setInStorage(
             'distance',
             sqrt($this->getFromStorage('multiplied x') + $this->getFromStorage('multiplied y'))
-        )->setInStorage('lat',
-            atan2($this->getFromStorage('z'), $this->getFromStorage('distance'))
-        );
+        )->setInStorage('lat', atan2($this->getFromStorage('z'), $this->getFromStorage('distance')));
     }
 }
