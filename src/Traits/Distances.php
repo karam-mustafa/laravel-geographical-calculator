@@ -46,20 +46,18 @@ trait Distances
     /**
      * get the sin or cos values multiply
      *
-     * @param $val1
-     * @param $val2
+     * @param  int  $firstLat
+     * @param  int  $secondLat
      * @param  string  $angle
      *
      * @return float
      * @author karam mustafa
      */
-    private function getAngle($val1, $val2, $angle = 'sin')
+    private function getAngle($firstLat, $secondLat, $angle = 'sin')
     {
         // convert the first value to radian and get result sin or cos method
-        $res1 = $angle(deg2rad($val1));
         // convert the second value to radian and get result sin or cos method
-        $res2 = $angle(deg2rad($val2));
-        return ($res1 * $res2);
+        return ($angle(deg2rad($firstLat)) * $angle(deg2rad($secondLat)));
     }
 
     /**
