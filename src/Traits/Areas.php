@@ -7,9 +7,10 @@ namespace KMLaravel\GeographicalCalculator\Traits;
 trait Areas
 {
     /**
-     * description
+     * get the center from a given data.
      *
-     * @return bool
+     * @return array|boolean
+     *
      * @author karam mustafa
      */
     public function getCenter()
@@ -31,7 +32,7 @@ trait Areas
             // set lat and long
             $this->setInStorage('lat', $point[0] * pi() / 180);
             $this->setInStorage('long', $point[1] * pi() / 180);
-            // set x,y,z
+            // set dimensions
             $this->setInStorage('x',
                 (
                     $this->getFromStorage('x') +
@@ -47,21 +48,25 @@ trait Areas
             );
         }
 
-        $this->resolveDimensionByPointsCount();
-
-        $this->resolveCoordinates();
-
-        $this->setResult([
-            'lat' => $this->getFromStorage('lat') * 180 / pi(),
-            'long' => $this->getFromStorage('long') * 180 / pi()
-        ]);
-
-        return $this->getResult();
+        // divide each dimension to all point count.
+        return $this->resolveDimensionByPointsCount()
+            // set final lat and long
+            ->resolveCoordinates()
+            // register this lat and long in results,
+            // so we can access this result from any next execution,
+            // if we have multi process or tasks in future.
+            ->setResult([
+                'lat' => $this->getFromStorage('lat') * 180 / pi(),
+                'long' => $this->getFromStorage('long') * 180 / pi()
+            ])
+            // get the final results.
+            ->getResult();
     }
 
     /**
-     * description
+     * reset all dimension values.
      *
+     * @return Areas
      * @author karam mustafa
      */
     public function resetDimensions()
@@ -70,11 +75,15 @@ trait Areas
             ->setInStorage('y', 0.0)
             ->setInStorage('z', 0.0)
             ->setInStorage('dimensions', ['x', 'y', 'z']);
+
+        return $this;
     }
 
     /**
-     * description
+     * get dimensions and loop for each one
+     * divide dimension value by points count.
      *
+     * @return Areas
      * @author karam mustafa
      */
     private function resolveDimensionByPointsCount()
@@ -85,18 +94,21 @@ trait Areas
                 ($this->getFromStorage($dimension) / $this->getFromStorage('pointsCount'))
             );
         }
+
+        return $this;
     }
 
     /**
-     * description
+     * set final lat and long values.
      *
+     * @return Areas
      * @author karam mustafa
      */
     private function resolveCoordinates()
     {
         $this->setInStorage('long', atan2(
             $this->getFromStorage('y'), $this->getFromStorage('x')
-        ))->setInStorage('multiplied y', 
+        ))->setInStorage('multiplied y',
             ($this->getFromStorage('y') * $this->getFromStorage('y'))
         )->setInStorage('multiplied x',
             ($this->getFromStorage('x') * $this->getFromStorage('x'))
@@ -104,5 +116,7 @@ trait Areas
             'distance',
             sqrt($this->getFromStorage('multiplied x') + $this->getFromStorage('multiplied y'))
         )->setInStorage('lat', atan2($this->getFromStorage('z'), $this->getFromStorage('distance')));
+
+        return $this;
     }
 }
