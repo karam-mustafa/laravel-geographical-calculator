@@ -6,47 +6,94 @@ namespace KMLaravel\GeographicalCalculator\Traits;
 
 trait Areas
 {
+    /**
+     * description
+     *
+     * @return bool
+     * @author karam mustafa
+     */
     public function getCenter()
     {
-        if (!count($this->getPoints())) {
+
+        // set points count in the storage.
+        $this->setInStorage('pointsCount', count($this->getPoints()));
+        // check if there are points or not.
+        if (!$this->getFromStorage('pointsCount')) {
             return false;
         }
 
-        $numCoords = count($this->getPoints());
+        // reset all dimensions values.
+        $this->resetDimensions();
 
-        $X = 0.0;
-        $Y = 0.0;
-        $Z = 0.0;
-
-        for ($i = 0; $i < count($this->getPoints()); $i++) {
-
-            $lat = $this->getPoints()[$i]->lat * pi() / 180;
-            $lon = $this->getPoints()[$i]->long * pi() / 180;
-
-            $a = cos($lat) * cos($lon);
-            $b = cos($lat) * sin($lon);
-            $c = sin($lat);
-
-            $X += $a;
-            $Y += $b;
-            $Z += $c;
+        // loop throughout each point and add the lat and long to each dimension.
+        foreach ($this->getPoints() as $point) {
+            // set lat and long
+            $lat = $point[0] * pi() / 180;
+            $lon = $point[1] * pi() / 180;
+            // set x,y,z
+            $this->setInStorage('x', ($this->getFromStorage('x') + cos($lat) * cos($lon)))
+                ->setInStorage('y', ($this->getFromStorage('y') + cos($lat) * sin($lon)))
+                ->setInStorage('z', ($this->getFromStorage('z') + sin($lat)));
         }
 
-        $X /= $numCoords;
-        $Y /= $numCoords;
-        $Z /= $numCoords;
+        $this->resolveDimensionByPointsCount();
 
-        $lon = atan2($Y, $X);
-        $hyp = sqrt($X * $X + $Y * $Y);
-        $lat = atan2($Z, $hyp);
+        $this->resolveCoordinates();
 
-        $newX = ($lat * 180 / pi());
-        $newY = ($lon * 180 / pi());
+        $this->setResult([
+            'lat' => $this->getFromStorage('lat') * 180 / pi(),
+            'long' => $this->getFromStorage('long') * 180 / pi()
+        ]);
 
+        return $this->getResult();
+    }
 
-        return [
-            'lat' => $newX,
-            'long' => $newY
-        ];
+    /**
+     * description
+     *
+     * @author karam mustafa
+     */
+    public function resetDimensions()
+    {
+        $this->setInStorage('x', 0.0)
+            ->setInStorage('y', 0.0)
+            ->setInStorage('z', 0.0)
+            ->setInStorage('dimensions', ['x', 'y', 'z']);
+    }
+
+    /**
+     * description
+     *
+     * @author karam mustafa
+     */
+    private function resolveDimensionByPointsCount()
+    {
+        foreach ($this->getFromStorage('dimensions') as $dimension) {
+            $this->setInStorage(
+                $dimension,
+                ($this->getFromStorage($dimension) / $this->getFromStorage('pointsCount'))
+            );
+        }
+    }
+
+    /**
+     * description
+     *
+     * @author karam mustafa
+     */
+    private function resolveCoordinates()
+    {
+        $this->setInStorage('long', atan2(
+            $this->getFromStorage('y'), $this->getFromStorage('x')
+        ));
+
+        $this->setInStorage('multiplied y', ($this->getFromStorage('y') * $this->getFromStorage('y')));
+        $this->setInStorage('multiplied x', ($this->getFromStorage('x') * $this->getFromStorage('x')));
+
+        $this->setInStorage(
+            'distance',
+            sqrt($this->getFromStorage('multiplied x') + $this->getFromStorage('multiplied y'))
+        );
+        $this->setInStorage('lat', atan2($this->getFromStorage('z'), $this->getFromStorage('distance')));
     }
 }
