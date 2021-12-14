@@ -28,12 +28,22 @@ trait Areas
         // loop throughout each point and add the lat and long to each dimension.
         foreach ($this->getPoints() as $point) {
             // set lat and long
-            $lat = $point[0] * pi() / 180;
-            $lon = $point[1] * pi() / 180;
+            $this->setInStorage('lat', $point[0] * pi() / 180);
+            $this->setInStorage('lon', $point[0] * pi() / 180);
             // set x,y,z
-            $this->setInStorage('x', ($this->getFromStorage('x') + cos($lat) * cos($lon)))
-                ->setInStorage('y', ($this->getFromStorage('y') + cos($lat) * sin($lon)))
-                ->setInStorage('z', ($this->getFromStorage('z') + sin($lat)));
+            $this->setInStorage('x',
+                (
+                    $this->getFromStorage('x') +
+                    cos($this->getFromStorage('lat')) * cos($this->getFromStorage('lon')))
+            )->setInStorage('y',
+                (
+                    $this->getFromStorage('y') +
+                    cos($this->getFromStorage('lat')) * sin($this->getFromStorage('lon'))
+                )
+            )->setInStorage('z', (
+                $this->getFromStorage('z') +
+                sin($this->getFromStorage('lat')))
+            );
         }
 
         $this->resolveDimensionByPointsCount();
@@ -85,15 +95,15 @@ trait Areas
     {
         $this->setInStorage('long', atan2(
             $this->getFromStorage('y'), $this->getFromStorage('x')
-        ));
-
-        $this->setInStorage('multiplied y', ($this->getFromStorage('y') * $this->getFromStorage('y')));
-        $this->setInStorage('multiplied x', ($this->getFromStorage('x') * $this->getFromStorage('x')));
-
-        $this->setInStorage(
+        ))->setInStorage('multiplied y',
+            ($this->getFromStorage('y') * $this->getFromStorage('y'))
+        )->setInStorage('multiplied x',
+            ($this->getFromStorage('x') * $this->getFromStorage('x'))
+        )->setInStorage(
             'distance',
             sqrt($this->getFromStorage('multiplied x') + $this->getFromStorage('multiplied y'))
+        )->setInStorage('lat',
+            atan2($this->getFromStorage('z'), $this->getFromStorage('distance'))
         );
-        $this->setInStorage('lat', atan2($this->getFromStorage('z'), $this->getFromStorage('distance')));
     }
 }
