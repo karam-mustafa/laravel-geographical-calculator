@@ -43,10 +43,10 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        Artisan::call('vendor:publish --provider="KMLaravel\GeographicalCalculator\Providers\GeographicalCalculatorServiceProviders"');
-        Artisan::call('vendor:publish --tag=geographical-calculator-config');
+        system('php artisan vendor:publish --provider="KMLaravel\GeographicalCalculator\Providers\GeographicalCalculatorServiceProviders"');
+        system('php artisan  vendor:publish --tag=geographical-calculator-config');
 
-        $this->info('<info> Install the dependencies was success</info>');
+        $this->info('<info> Install the dependencies was succeed</info>');
 
         if ($this->confirm('Would you like to show some love by starring the repo?', true)) {
             if (PHP_OS_FAMILY === 'Darwin') {
