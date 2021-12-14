@@ -10,7 +10,7 @@ trait Distances
     use DataStorage, Formatter, Debugger;
 
     /**
-     * get final length between the given points
+     * Finding the distance of points using several given coordinate points
      *
      * @return array
      * @throws Exception
@@ -44,7 +44,7 @@ trait Distances
     }
 
     /**
-     * get the sin or cos values multiply
+     * get the sin or cos values multiply.
      *
      * @param  int  $firstLat
      * @param  int  $secondLat
@@ -61,7 +61,7 @@ trait Distances
     }
 
     /**
-     * get theta angle
+     * get theta angle.
      *
      * @return float
      * @author karam mustafa
@@ -72,7 +72,7 @@ trait Distances
     }
 
     /**
-     * calculation distance process
+     * calculation distance process.
      *
      * @return array
      * @throws Exception
@@ -96,7 +96,7 @@ trait Distances
     }
 
     /**
-     * check if user chose any units
+     * check if user chose any units.
      *
      * @param  float  $distance
      *
@@ -107,11 +107,12 @@ trait Distances
     private function resolveDistanceWithUnits($distance)
     {
 
-        $options = $this->getOptions();
 
-        if (isset($options['units']) && sizeof($options['units']) > 0) {
+        if (isset($this->getOptions()['units']) &&
+            sizeof($this->getOptions('units')) > 0
+        ) {
             // loop in each unit and solve the distance.
-            foreach ($options['units'] as $unit) {
+            foreach ($this->getOptions()['units'] as $unit) {
                 // check if the unit isset.
                 $this->checkIfUnitExists($unit)
                     // set the result in storage.
