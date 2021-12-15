@@ -1,6 +1,5 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Classes;
 
 use Exception;
@@ -11,7 +10,8 @@ use KMLaravel\GeographicalCalculator\Traits\Distances;
 
 class Geo extends AbstractGeo implements GeoInterface
 {
-    use Areas, Distances;
+    use Areas;
+    use Distances;
 
     /**
      * instance constructor.
@@ -23,9 +23,8 @@ class Geo extends AbstractGeo implements GeoInterface
         $this->resolveUnits();
     }
 
-
     /**
-     * check if user chose any units
+     * check if user chose any units.
      *
      * @author karam mustafa
      */
@@ -37,12 +36,14 @@ class Geo extends AbstractGeo implements GeoInterface
     }
 
     /**
-     * check if current units its available in units property or config file
+     * check if current units its available in units property or config file.
      *
-     * @param  string  $unit
+     * @param string $unit
+     *
+     * @throws \Exception
      *
      * @return Geo
-     * @throws \Exception
+     *
      * @author karam mustafa
      */
     private function checkIfUnitExists($unit)

@@ -1,67 +1,70 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Abstracts;
 
-
 /**
- * Class AbstractGeo
+ * Class AbstractGeo.
  *
  * @author karam mustafa
- * @package KMLaravel\GeographicalCalculator\Abstracts
  */
 abstract class AbstractGeo
 {
     /**
-     *
      * @author karam mustafa
+     *
      * @var array
      */
     private $longs = [];
     /**
-     * all the points to handle the selected requirement
+     * all the points to handle the selected requirement.
      *
      * @author karam mustafa
+     *
      * @var array
      */
     public $points = [];
     /**
-     * sin value
+     * sin value.
      *
      * @author karam mustafa
+     *
      * @var float|int
      */
     private $sin;
     /**
-     * cos value
+     * cos value.
      *
      * @author karam mustafa
+     *
      * @var float|int
      */
     private $cos;
     /**
-     * available units
+     * available units.
      *
      * @author karam mustafa
+     *
      * @var array
      */
     private $units = [
         'mile' => 1,
-        'km' => 1.609344,
-        'm' => (1.609344 * 1000),
-        'cm' => (1.609344 * 100),
-        'mm' => (1.609344 * 1000 * 1000),
+        'km'   => 1.609344,
+        'm'    => (1.609344 * 1000),
+        'cm'   => (1.609344 * 100),
+        'mm'   => (1.609344 * 1000 * 1000),
     ];
     /**
-     * for develop and resolve any options
+     * for develop and resolve any options.
      *
      * @author karam mustafa
+     *
      * @var array
      */
     private $options;
 
     /**
      * @return float|int
+     *
      * @author karam mustaf
      */
     public function getSin()
@@ -70,9 +73,10 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  float|int  $sin
+     * @param float|int $sin
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function setSin($sin)
@@ -84,6 +88,7 @@ abstract class AbstractGeo
 
     /**
      * @return float|int
+     *
      * @author karam mustaf
      */
     public function getCos()
@@ -92,19 +97,22 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  float|int  $cos
+     * @param float|int $cos
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function setCos($cos)
     {
         $this->cos = $cos;
+
         return $this;
     }
 
     /**
      * @return mixed
+     *
      * @author karam mustaf
      */
     public function getLongs()
@@ -116,6 +124,7 @@ abstract class AbstractGeo
      * get the available units.
      *
      * @return array
+     *
      * @author karam mustafa
      */
     public function getUnits()
@@ -124,9 +133,10 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  array  $units
+     * @param array $units
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function setUnits($units)
@@ -137,9 +147,10 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  mixed  $key
+     * @param mixed $key
      *
      * @return array
+     *
      * @author karam mustaf
      */
     public function getOptions($key = null)
@@ -150,9 +161,10 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  array  $options
+     * @param array $options
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function setOptions($options)
@@ -163,9 +175,10 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  null  $index
+     * @param null $index
      *
      * @return array
+     *
      * @author karam mustaf
      */
     public function getPoints($index = null)
@@ -179,6 +192,7 @@ abstract class AbstractGeo
      * @param $point
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function setPoint($point)
@@ -189,9 +203,10 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  array  $points
+     * @param array $points
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function setPoints($points)
@@ -205,6 +220,7 @@ abstract class AbstractGeo
      * @param $val
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function setLongitude($val)
@@ -215,11 +231,11 @@ abstract class AbstractGeo
     }
 
     /**
-     * @param  mixed  $condition
-     *
-     * @param  null|callable  $callback
+     * @param mixed         $condition
+     * @param null|callable $callback
      *
      * @return AbstractGeo
+     *
      * @author karam mustaf
      */
     public function checkIf($condition, $callback = null)
@@ -229,6 +245,7 @@ abstract class AbstractGeo
                 return $callback();
             }
         }
+
         return $this;
     }
 

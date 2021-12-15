@@ -1,30 +1,29 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Traits;
 
 /**
- * Trait DataStorage
+ * Trait DataStorage.
  *
  * @author karam mustafa
- * @package KMLaravel\GeographicalCalculator\Traits
  */
 trait DataStorage
 {
-
     /**
      * this property save any key with his value in a custom key.
      * if we want to store something instead of declare a variable and pass it as parameter
      * in any function, we use this property as a public property to share the data in classes.
      *
      * @author karam mustafa
+     *
      * @var array
      */
     private $localStorage = [];
     /**
-     * results
+     * results.
      *
      * @author karam mustafa
+     *
      * @var array
      */
     private $result = [];
@@ -40,9 +39,10 @@ trait DataStorage
     }
 
     /**
-     * @param  mixed  $result
+     * @param mixed $result
      *
      * @return DataStorage
+     *
      * @author karam mustaf
      */
     public function setResult($result)
@@ -53,7 +53,7 @@ trait DataStorage
     }
 
     /**
-     * @param  string  $key
+     * @param string $key
      *
      * @return mixed
      *
@@ -67,12 +67,12 @@ trait DataStorage
     }
 
     /**
-     * @param  string  $key
-     * @param  mixed  $value
-     *
-     * @param  array  $options
+     * @param string $key
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return DataStorage
+     *
      * @author karam mustaf
      */
     public function setInStorage($key, $value, $options = [])
@@ -83,8 +83,8 @@ trait DataStorage
     }
 
     /**
-     *
      * @return DataStorage
+     *
      * @author karam mustaf
      */
     public function clearStorage()
@@ -95,9 +95,10 @@ trait DataStorage
     }
 
     /**
-     * @param  mixed  $keys
+     * @param mixed $keys
      *
      * @return DataStorage
+     *
      * @author karam mustaf
      */
     public function removeFromStorage(...$keys)
