@@ -11,4 +11,19 @@ class Geo extends AbstractGeo implements GeoInterface
 {
     use Areas;
     use Distances;
+
+    /**
+     * @inheritDoc
+     */
+    public function clearResult()
+    {
+        // at this time, the Distances trait use the storage
+        // so we check if there is any property called result
+        // we will empty these results
+        if (property_exists(__CLASS__, 'result')) {
+            $this->setResult([], true);
+        }
+
+        return $this;
+    }
 }
