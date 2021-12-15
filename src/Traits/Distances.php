@@ -192,9 +192,15 @@ trait Distances
      */
     private function calcDistance()
     {
-        $distance = acos($this->getSin() + $this->getCos() * $this->getValueForAngleBetween());
+        $this->setInStorage('distance',
+            acos($this->getSin() + $this->getCos() * $this->getValueForAngleBetween())
+        )->setInStorage('rad2deg',
+            rad2deg($this->getFromStorage('distance'))
+        )->setInStorage('correctDistanceValue',
+            $this->correctDistanceValue($this->getFromStorage('rad2deg'))
+        );
 
-        return $this->resolveDistanceWithUnits($this->correctDistanceValue(rad2deg($distance)));
+        return $this->resolveDistanceWithUnits($this->getFromStorage('correctDistanceValue'));
     }
 
     /**
