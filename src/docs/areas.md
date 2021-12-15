@@ -9,7 +9,7 @@
 
             // get the calculated center between these points.
             ->getCenter();
-
+            // the result should be array contains lat value and long value
     return $center;
 ```
 All points at once
@@ -25,6 +25,7 @@ All points at once
             // and of course, you still can use getPoint again if you want.
             ->setPoint([33, 40])
             ->getCenter();
+            // the result should be array contains lat value and long value
 
      return $center;
 ```
