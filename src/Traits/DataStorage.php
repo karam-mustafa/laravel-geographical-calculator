@@ -39,21 +39,23 @@ trait DataStorage
     }
 
     /**
-     * @param mixed $result
+     * @param  mixed  $result
+     *
+     * @param  bool  $force
      *
      * @return DataStorage
      *
      * @author karam mustaf
      */
-    public function setResult($result)
+    public function setResult($result, $force = false)
     {
-        $this->result = array_merge($this->result, $result);
+        $this->result = $force ? $result : array_merge($this->result, $result);
 
         return $this;
     }
 
     /**
-     * @param string $key
+     * @param  string  $key
      *
      * @return mixed
      *
@@ -67,8 +69,8 @@ trait DataStorage
     }
 
     /**
-     * @param string $key
-     * @param mixed  $value
+     * @param  string  $key
+     * @param  mixed  $value
      *
      * @return DataStorage
      *
@@ -94,7 +96,7 @@ trait DataStorage
     }
 
     /**
-     * @param mixed $keys
+     * @param  mixed  $keys
      *
      * @return DataStorage
      *

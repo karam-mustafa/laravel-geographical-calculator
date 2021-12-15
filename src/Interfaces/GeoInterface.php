@@ -15,7 +15,6 @@ interface GeoInterface
      * Finding the distance of points using several given coordinate points.
      *
      * @author karam mustafa
-     * @author karam mustafa
      */
     public function getDistance();
 
@@ -23,7 +22,14 @@ interface GeoInterface
      * Finding the center of points using several given coordinate points.
      *
      * @author karam mustafa
-     * @author karam mustafa
      */
     public function getCenter();
+
+    /**
+     * clear all stored results
+     *
+     * @return  GeoInterface
+     * @author karam mustafa
+     */
+    public function clearResult();
 }

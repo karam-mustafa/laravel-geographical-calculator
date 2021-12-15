@@ -11,6 +11,7 @@ use KMLaravel\GeographicalCalculator\Classes\Geo;
  * @method Geo setPoints(array $points)
  * @method Geo setOptions(array $options)
  * @method Geo getCenter()
+ * @method Geo clearResult()
  */
 class GeoFacade extends Facade
 {

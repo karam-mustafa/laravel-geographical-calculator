@@ -236,7 +236,10 @@ trait Distances
                 ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
         }
         // remove un required results and get the results from storage.
-        return $this->removeFromStorage('position', 'distance_key')->getFromStorage();
+        return $this
+            ->removeFromStorage('position', 'distance_key')
+            ->removeFromStorage('distance' , 'rad2deg' , 'correctDistanceValue')
+            ->getFromStorage();
     }
 
 
