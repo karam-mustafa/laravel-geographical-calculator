@@ -27,18 +27,4 @@ abstract class AbstractGeo
 
         return $this;
     }
-
-    /**
-     * get final Distances between the given points.
-     *
-     * @author karam mustafa
-     */
-    abstract public function getDistance();
-
-    /**
-     * get final Distances between the given points.
-     *
-     * @author karam mustafa
-     */
-    abstract public function getCenter();
 }
