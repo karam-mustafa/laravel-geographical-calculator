@@ -3,7 +3,7 @@
 Basic usage
 ----------
 ```php
-    // Define your values
+    // Define your points
     $distance =  \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
             // add your options, the default value for the unit is mile.
             ->setOptions(['units' => ['km']])
@@ -54,7 +54,7 @@ All points at once
                 [33, 40],
                 // .... other points
             ])
-            // and of course you still can use getPoint again if you want.
+            // and of course, you still can use getPoint again if you want.
             ->setPoint([33, 40])
             ->getDistance();
 
