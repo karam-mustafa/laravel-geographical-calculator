@@ -1,19 +1,22 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Traits;
 
 use Exception;
 
 trait Distances
 {
-    use DataStorage, Formatter, Debugger;
+    use DataStorage;
+    use Formatter;
+    use Debugger;
 
     /**
-     * Finding the distance of points using several given coordinate points
+     * Finding the distance of points using several given coordinate points.
+     *
+     * @throws Exception
      *
      * @return array
-     * @throws Exception
+     *
      * @author karam mustafa
      * @author karam mustafa
      */
@@ -32,38 +35,41 @@ trait Distances
                     // set second longitude.
                     ->setLongitude($this->getPoints($index + 1)[1])
                     // set the formatted key that bind with the prefix config.
-                    ->setInStorage('distance_key',
+                    ->setInStorage(
+                        'distance_key',
                         $this->formatDistanceKey($this->getFromStorage('position'))
                     )
                     // save the results.
                     ->setResult([$this->getFromStorage('distance_key') => $this->calcDistance()]);
             }
-
         }
+
         return $this->getResult();
     }
 
     /**
      * get the sin or cos values multiply.
      *
-     * @param  int  $firstLat
-     * @param  int  $secondLat
-     * @param  string  $angle
+     * @param int    $firstLat
+     * @param int    $secondLat
+     * @param string $angle
      *
      * @return float
+     *
      * @author karam mustafa
      */
     private function getAngle($firstLat, $secondLat, $angle = 'sin')
     {
         // convert the first value to radian and get result sin or cos method
         // convert the second value to radian and get result sin or cos method
-        return ($angle(deg2rad($firstLat)) * $angle(deg2rad($secondLat)));
+        return $angle(deg2rad($firstLat)) * $angle(deg2rad($secondLat));
     }
 
     /**
      * get theta angle.
      *
      * @return float
+     *
      * @author karam mustafa
      */
     private function getValueForAngleBetween()
@@ -74,13 +80,16 @@ trait Distances
     /**
      * calculation distance process.
      *
-     * @return array
      * @throws Exception
+     *
+     * @return array
+     *
      * @author karam mustafa
      */
     private function calcDistance()
     {
         $distance = acos($this->getSin() + $this->getCos() * $this->getValueForAngleBetween());
+
         return $this->resolveDistanceWithUnits($this->correctDistanceValue(rad2deg($distance)));
     }
 
@@ -88,26 +97,27 @@ trait Distances
      * @param $distance
      *
      * @return float
+     *
      * @author karam mustafa
      */
     private function correctDistanceValue($distance)
     {
-        return ($distance * 60 * 1.1515);
+        return $distance * 60 * 1.1515;
     }
 
     /**
      * check if user chose any units.
      *
-     * @param  float  $distance
+     * @param float $distance
+     *
+     * @throws Exception
      *
      * @return array
-     * @throws Exception
+     *
      * @author karam mustafa
      */
     private function resolveDistanceWithUnits($distance)
     {
-
-
         if (isset($this->getOptions()['units']) &&
             sizeof($this->getOptions('units')) > 0
         ) {

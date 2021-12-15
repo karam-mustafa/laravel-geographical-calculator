@@ -1,15 +1,11 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Commands;
 
-
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class InstallCommand extends Command
 {
-
     public $packageLink = 'https://github.com/karam-mustafa/laravel-geographical-calculator';
 
     /**

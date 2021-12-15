@@ -1,17 +1,15 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Interfaces;
 
 interface GeoInterface
 {
     /**
-     *
-     * @param  array  $point
+     * @param array $point
      *
      * @author karam mustafa
      */
-    function setPoint($point);
+    public function setPoint($point);
 
     /**
      * Finding the distance of points using several given coordinate points.
@@ -19,13 +17,13 @@ interface GeoInterface
      * @author karam mustafa
      * @author karam mustafa
      */
-    function getDistance();
+    public function getDistance();
 
     /**
-     * Finding the center of points using several given coordinate points
+     * Finding the center of points using several given coordinate points.
      *
      * @author karam mustafa
      * @author karam mustafa
      */
-    function getCenter();
+    public function getCenter();
 }

@@ -10,8 +10,9 @@ class DistanceTest extends TestCase
     /**
      * test if the distance equal the correct distance by given coordinate.
      *
-     * @return void
      * @throws \Exception
+     *
+     * @return void
      */
     public function test_distance()
     {
@@ -20,6 +21,6 @@ class DistanceTest extends TestCase
             ->setPoint([33, 40])
             ->getDistance();
 
-        $this->assertEquals([ "km" => 1258.1691302282 ] , $result);
+        $this->assertEquals(['km' => 1258.1691302282], $result);
     }
 }
