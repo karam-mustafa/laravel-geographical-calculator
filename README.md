@@ -25,7 +25,7 @@ php artisan geo:install
 
 Features
 -----------
-- [Distance](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distance.md)
+- [Distance](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md)
 - [Areas](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/areas.md)
 
 
