@@ -26,9 +26,10 @@ interface GeoInterface
     public function getCenter();
 
     /**
-     * clear all stored results
+     * clear all stored results.
      *
-     * @return  GeoInterface
+     * @return GeoInterface
+     *
      * @author karam mustafa
      */
     public function clearResult();

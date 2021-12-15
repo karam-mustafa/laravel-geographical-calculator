@@ -21,7 +21,7 @@ class AreasTest extends TestCase
             ->getCenter();
 
         $this->assertEquals([
-            'lat' => 27.508023496931,
+            'lat'  => 27.508023496931,
             'long' => 38.424795502212,
         ], $result);
     }
