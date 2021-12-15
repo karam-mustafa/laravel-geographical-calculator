@@ -2,7 +2,7 @@
 [![License](https://poser.pugx.org/kmlaravel/apis-generator/license)](//packagist.org/packages/kmlaravel/apis-generator)
 [![Build Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-[![Code Quality](https://www.code-inspector.com/project/16475/score/svg)](https://www.code-inspector.com/project/16475/score/svg)
+[![Code Quality](https://api.codiga.io/project/30429/score/svg)](https://api.codiga.io/project/30429/score/svg)
 
 Geographical Calculator was developed for laravel 5.8+ to help you to implement geographical calculation, 
 with With several algorithms that help you deal with coordinates.
