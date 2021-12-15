@@ -222,19 +222,12 @@ trait Distances
      */
     private function resolveDistanceWithUnits($distance)
     {
-        if (isset($this->getOptions()['units']) &&
-            sizeof($this->getOptions('units')) > 0
-        ) {
-            // loop in each unit and solve the distance.
-            foreach ($this->getOptions()['units'] as $unit) {
-                // check if the unit isset.
-                $this->checkIfUnitExists($unit)
-                    // set the result in storage.
-                    ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
-            }
-        } else {
-            // if there are not units, then get the default units property.
-            $this->setInStorage('mile', $distance * $this->getUnits()['mile']);
+        // loop in each unit and solve the distance.
+        foreach ($this->getOptions()['units'] as $unit) {
+            // check if the unit isset.
+            $this->checkIfUnitExists($unit)
+                // set the result in storage.
+                ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
         }
         // remove un required results and get the results from storage.
         return $this->removeFromStorage('position', 'distance_key')->getFromStorage();

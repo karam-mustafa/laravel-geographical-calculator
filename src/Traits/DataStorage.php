@@ -69,13 +69,12 @@ trait DataStorage
     /**
      * @param string $key
      * @param mixed  $value
-     * @param array  $options
      *
      * @return DataStorage
      *
      * @author karam mustaf
      */
-    public function setInStorage($key, $value, $options = [])
+    public function setInStorage($key, $value)
     {
         $this->localStorage[$key] = $value;
 

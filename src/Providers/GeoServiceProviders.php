@@ -24,7 +24,7 @@ class GeoServiceProviders extends ServiceProvider
      */
     protected function registerFacades()
     {
-        $this->app->singleton('GeoFacade', function ($app) {
+        $this->app->singleton('GeoFacade', function () {
             return new Geo();
         });
     }
