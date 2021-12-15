@@ -9,6 +9,100 @@ trait Distances
     use DataStorage;
     use Formatter;
     use Debugger;
+    /**
+     * @author karam mustafa
+     *
+     * @var array
+     */
+    private $longs = [];
+    /**
+     * sin value.
+     *
+     * @author karam mustafa
+     *
+     * @var float|int
+     */
+    private $sin;
+    /**
+     * cos value.
+     *
+     * @author karam mustafa
+     *
+     * @var float|int
+     */
+    private $cos;
+
+    /**
+     * @return float|int
+     *
+     * @author karam mustaf
+     */
+    public function getSin()
+    {
+        return $this->sin;
+    }
+
+    /**
+     * @param  float|int  $sin
+     *
+     * @return Distances
+     *
+     * @author karam mustaf
+     */
+    public function setSin($sin)
+    {
+        $this->sin = $sin;
+
+        return $this;
+    }
+
+    /**
+     * @return float|int
+     *
+     * @author karam mustaf
+     */
+    public function getCos()
+    {
+        return $this->cos;
+    }
+
+    /**
+     * @return mixed
+     *
+     * @author karam mustaf
+     */
+    public function getLongs()
+    {
+        return $this->longs;
+    }
+
+    /**
+     * @param $val
+     *
+     * @return Distances
+     *
+     * @author karam mustaf
+     */
+    public function setLongitude($val)
+    {
+        $this->longs[] = $val;
+
+        return $this;
+    }
+
+    /**
+     * @param  float|int  $cos
+     *
+     * @return Distances
+     *
+     * @author karam mustaf
+     */
+    public function setCos($cos)
+    {
+        $this->cos = $cos;
+
+        return $this;
+    }
 
     /**
      * instance constructor.
@@ -23,9 +117,9 @@ trait Distances
     /**
      * Finding the distance of points using several given coordinate points.
      *
-     * @throws Exception
-     *
      * @return array
+     *
+     * @throws Exception
      *
      * @author karam mustafa
      * @author karam mustafa
@@ -60,9 +154,9 @@ trait Distances
     /**
      * get the sin or cos values multiply.
      *
-     * @param int    $firstLat
-     * @param int    $secondLat
-     * @param string $angle
+     * @param  int  $firstLat
+     * @param  int  $secondLat
+     * @param  string  $angle
      *
      * @return float
      *
@@ -90,9 +184,9 @@ trait Distances
     /**
      * calculation distance process.
      *
-     * @throws Exception
-     *
      * @return array
+     *
+     * @throws Exception
      *
      * @author karam mustafa
      */
@@ -118,11 +212,11 @@ trait Distances
     /**
      * check if user chose any units.
      *
-     * @param float $distance
-     *
-     * @throws Exception
+     * @param  float  $distance
      *
      * @return array
+     *
+     * @throws Exception
      *
      * @author karam mustafa
      */
@@ -162,11 +256,11 @@ trait Distances
     /**
      * check if current units its available in units property or config file.
      *
-     * @param string $unit
-     *
-     * @throws \Exception
+     * @param  string  $unit
      *
      * @return Distances
+     *
+     * @throws \Exception
      *
      * @author karam mustafa
      */

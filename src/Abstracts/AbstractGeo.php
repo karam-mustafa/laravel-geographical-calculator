@@ -10,12 +10,6 @@ namespace KMLaravel\GeographicalCalculator\Abstracts;
 abstract class AbstractGeo
 {
     /**
-     * @author karam mustafa
-     *
-     * @var array
-     */
-    private $longs = [];
-    /**
      * all the points to handle the selected requirement.
      *
      * @author karam mustafa
@@ -23,22 +17,6 @@ abstract class AbstractGeo
      * @var array
      */
     public $points = [];
-    /**
-     * sin value.
-     *
-     * @author karam mustafa
-     *
-     * @var float|int
-     */
-    private $sin;
-    /**
-     * cos value.
-     *
-     * @author karam mustafa
-     *
-     * @var float|int
-     */
-    private $cos;
     /**
      * available units.
      *
@@ -61,64 +39,6 @@ abstract class AbstractGeo
      * @var array
      */
     private $options;
-
-    /**
-     * @return float|int
-     *
-     * @author karam mustaf
-     */
-    public function getSin()
-    {
-        return $this->sin;
-    }
-
-    /**
-     * @param float|int $sin
-     *
-     * @return AbstractGeo
-     *
-     * @author karam mustaf
-     */
-    public function setSin($sin)
-    {
-        $this->sin = $sin;
-
-        return $this;
-    }
-
-    /**
-     * @return float|int
-     *
-     * @author karam mustaf
-     */
-    public function getCos()
-    {
-        return $this->cos;
-    }
-
-    /**
-     * @param float|int $cos
-     *
-     * @return AbstractGeo
-     *
-     * @author karam mustaf
-     */
-    public function setCos($cos)
-    {
-        $this->cos = $cos;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     *
-     * @author karam mustaf
-     */
-    public function getLongs()
-    {
-        return $this->longs;
-    }
 
     /**
      * get the available units.
@@ -212,20 +132,6 @@ abstract class AbstractGeo
     public function setPoints($points)
     {
         $this->points = array_merge($this->points, $points);
-
-        return $this;
-    }
-
-    /**
-     * @param $val
-     *
-     * @return AbstractGeo
-     *
-     * @author karam mustaf
-     */
-    public function setLongitude($val)
-    {
-        $this->longs[] = $val;
 
         return $this;
     }
