@@ -1,3 +1,6 @@
+![logo](assets/logo.png)
+
+
 ## Geographical Calculator
 [![License](https://poser.pugx.org/kmlaravel/apis-generator/license)](//packagist.org/packages/kmlaravel/apis-generator)
 [![Build Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/build-status/master)
@@ -15,31 +18,20 @@ The first step is using composer to install the package and automatically update
 ```shell
 composer require kmlaravel/laravel-geographical-calculator
 ```
-> ###### Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
-##### 2-1 - Copy the package providers to your local config with the publish command, this will publish asset and config :
+##### 2 - Copy the package providers to your local config with the publish command, this will publish the config:
 ```shell
-php artisan vendor:publish --provider="KMLaravel\GeographicalCalculator\Providers\GeographicalCalculatorServiceProviders"
-```
-##### 2-2 - Or you may Copy the package config to your local config with the publish command:
-```shell
-php artisan vendor:publish --tag=geographical-calculator-config
+php artisan geo:install
 ```
 
-Basic usage
+Features
 -----------
-##### basic example
-```php
-    // define your values
-    // $class = \KMLaravel\GeographicalCalculator\Facade\GeographicalCalculatorFacade::initCoordinates($firstLat , $secondLat , $firstLon , $secondLon , ['units' => ['km']]);
-    $class = \KMLaravel\GeographicalCalculator\Facade\GeographicalCalculatorFacade::initCoordinates(22,33,37,40 , ['units' => ['km']]);
-    return $class->getDistance();
-    // the result is array contains values based on your units options insertion [ "km" => 1258.1691302282 ] 
-```
+- [Distance](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distance.md)
+- [Areas](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/areas.md)
 
 
 config options
 ----------------
-> ## add your custom units
+> ## add your custom units,keys ..etc.
 >
 ```php
     /*
