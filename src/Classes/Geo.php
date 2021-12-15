@@ -21,7 +21,7 @@ class Geo extends AbstractGeo implements GeoInterface
         // so we check if there is any property called result
         // we will empty these results
         if (property_exists(__CLASS__, 'result')) {
-            $this->setResult([], true);
+            $this->clearStoredResults();
         }
 
         return $this;
