@@ -11,6 +11,16 @@ trait Distances
     use Debugger;
 
     /**
+     * instance constructor.
+     *
+     * @author karam mustafa
+     */
+    public function __construct()
+    {
+        $this->resolveUnits();
+    }
+
+    /**
      * Finding the distance of points using several given coordinate points.
      *
      * @throws Exception
@@ -134,5 +144,38 @@ trait Distances
         }
         // remove un required results and get the results from storage.
         return $this->removeFromStorage('position', 'distance_key')->getFromStorage();
+    }
+
+
+    /**
+     * check if user chose any units.
+     *
+     * @author karam mustafa
+     */
+    private function resolveUnits()
+    {
+        if (config('geographical_calculator.units')) {
+            $this->setUnits(config('geographical_calculator.units'));
+        }
+    }
+
+    /**
+     * check if current units its available in units property or config file.
+     *
+     * @param string $unit
+     *
+     * @throws \Exception
+     *
+     * @return Distances
+     *
+     * @author karam mustafa
+     */
+    private function checkIfUnitExists($unit)
+    {
+        if (!isset($this->getUnits()[$unit])) {
+            throw new Exception("the unit ['$unit'] dose not available in units config");
+        }
+
+        return $this;
     }
 }
