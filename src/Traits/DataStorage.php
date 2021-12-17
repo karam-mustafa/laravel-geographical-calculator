@@ -56,7 +56,7 @@ trait DataStorage
      *
      * @var array
      */
-    private $options;
+    private $options = [];
 
     /**
      * get the available units.
