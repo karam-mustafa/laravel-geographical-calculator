@@ -1,9 +1,14 @@
+[coming] v2.2.0
+--------
+* Improved traits design.
+
+
 [coming] v2.1.0
 --------
 * Added all function to get all package features.
 * Added Loops trait helper.
 * Improved getDistance and getCenter function to accept callback.
-* Improved traits design.
+* Added nearest neighbor algorithm.
 
 
 
