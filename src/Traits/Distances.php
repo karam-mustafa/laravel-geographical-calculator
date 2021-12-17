@@ -192,14 +192,11 @@ trait Distances
      */
     private function calcDistance()
     {
-        $this->setInStorage(
-            'distance',
+        $this->setInStorage('distance',
             acos($this->getSin() + $this->getCos() * $this->getValueForAngleBetween())
-        )->setInStorage(
-            'rad2deg',
+        )->setInStorage('rad2deg',
             rad2deg($this->getFromStorage('distance'))
-        )->setInStorage(
-            'correctDistanceValue',
+        )->setInStorage('correctDistanceValue',
             $this->correctDistanceValue($this->getFromStorage('rad2deg'))
         );
 
@@ -249,9 +246,10 @@ trait Distances
         // remove un required results and get the results from storage.
         return $this
             ->removeFromStorage('position', 'distance_key')
-            ->removeFromStorage('distance', 'rad2deg', 'correctDistanceValue')
+            ->removeFromStorage('distance' , 'rad2deg' , 'correctDistanceValue')
             ->getFromStorage();
     }
+
 
     /**
      * check if user chose any units.
