@@ -43,7 +43,7 @@ trait Distances
     }
 
     /**
-     * @param float|int $sin
+     * @param  float|int  $sin
      *
      * @return Distances
      *
@@ -91,7 +91,7 @@ trait Distances
     }
 
     /**
-     * @param float|int $cos
+     * @param  float|int  $cos
      *
      * @return Distances
      *
@@ -117,9 +117,9 @@ trait Distances
     /**
      * Finding the distance of points using several given coordinate points.
      *
-     * @throws Exception
-     *
      * @return array
+     *
+     * @throws Exception
      *
      * @author karam mustafa
      * @author karam mustafa
@@ -154,9 +154,9 @@ trait Distances
     /**
      * get the sin or cos values multiply.
      *
-     * @param int    $firstLat
-     * @param int    $secondLat
-     * @param string $angle
+     * @param  int  $firstLat
+     * @param  int  $secondLat
+     * @param  string  $angle
      *
      * @return float
      *
@@ -184,22 +184,19 @@ trait Distances
     /**
      * calculation distance process.
      *
-     * @throws Exception
-     *
      * @return array
+     *
+     * @throws Exception
      *
      * @author karam mustafa
      */
     private function calcDistance()
     {
-        $this->setInStorage(
-            'distance',
+        $this->setInStorage('distance',
             acos($this->getSin() + $this->getCos() * $this->getValueForAngleBetween())
-        )->setInStorage(
-            'rad2deg',
+        )->setInStorage('rad2deg',
             rad2deg($this->getFromStorage('distance'))
-        )->setInStorage(
-            'correctDistanceValue',
+        )->setInStorage('correctDistanceValue',
             $this->correctDistanceValue($this->getFromStorage('rad2deg'))
         );
 
@@ -221,29 +218,38 @@ trait Distances
     /**
      * check if user chose any units.
      *
-     * @param float $distance
-     *
-     * @throws Exception
+     * @param  float  $distance
      *
      * @return array
+     *
+     * @throws Exception
      *
      * @author karam mustafa
      */
     private function resolveDistanceWithUnits($distance)
     {
-        // loop in each unit and solve the distance.
-        foreach ($this->getOptions()['units'] as $unit) {
-            // check if the unit isset.
-            $this->checkIfUnitExists($unit)
-                // set the result in storage.
-                ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
+        if (isset($this->getOptions()['units']) &&
+            sizeof($this->getOptions('units')) > 0
+        ) {
+            // loop in each unit and solve the distance.
+            foreach ($this->getOptions()['units'] as $unit) {
+                // check if the unit isset.
+                $this->checkIfUnitExists($unit)
+                    // set the result in storage.
+                    ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
+            }
+        } else {
+            // if there are not units, then get the default units property.
+            $this->setInStorage('mile', $distance * $this->getUnits()['mile']);
         }
+
         // remove un required results and get the results from storage.
         return $this
             ->removeFromStorage('position', 'distance_key')
-            ->removeFromStorage('distance', 'rad2deg', 'correctDistanceValue')
+            ->removeFromStorage('distance' , 'rad2deg' , 'correctDistanceValue')
             ->getFromStorage();
     }
+
 
     /**
      * check if user chose any units.
@@ -260,11 +266,11 @@ trait Distances
     /**
      * check if current units its available in units property or config file.
      *
-     * @param string $unit
-     *
-     * @throws \Exception
+     * @param  string  $unit
      *
      * @return Distances
+     *
+     * @throws \Exception
      *
      * @author karam mustafa
      */

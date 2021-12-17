@@ -44,10 +44,10 @@ trait DataStorage
      */
     private $units = [
         'mile' => 1,
-        'km'   => 1.609344,
-        'm'    => (1.609344 * 1000),
-        'cm'   => (1.609344 * 100),
-        'mm'   => (1.609344 * 1000 * 1000),
+        'km' => 1.609344,
+        'm' => (1.609344 * 1000),
+        'cm' => (1.609344 * 100),
+        'mm' => (1.609344 * 1000 * 1000),
     ];
     /**
      * for develop and resolve any options.
@@ -56,7 +56,7 @@ trait DataStorage
      *
      * @var array
      */
-    private $options;
+    private $options = [];
 
     /**
      * get the available units.
@@ -71,7 +71,7 @@ trait DataStorage
     }
 
     /**
-     * @param array $units
+     * @param  array  $units
      *
      * @return DataStorage
      *
@@ -85,7 +85,7 @@ trait DataStorage
     }
 
     /**
-     * @param mixed $key
+     * @param  mixed  $key
      *
      * @return array
      *
@@ -99,7 +99,7 @@ trait DataStorage
     }
 
     /**
-     * @param array $options
+     * @param  array  $options
      *
      * @return DataStorage
      *
@@ -113,7 +113,7 @@ trait DataStorage
     }
 
     /**
-     * @param null $index
+     * @param  null  $index
      *
      * @return array
      *
@@ -141,7 +141,7 @@ trait DataStorage
     }
 
     /**
-     * @param array $points
+     * @param  array  $points
      *
      * @return DataStorage
      *
@@ -165,8 +165,9 @@ trait DataStorage
     }
 
     /**
-     * @param mixed $result
-     * @param bool  $force
+     * @param  mixed  $result
+     *
+     * @param  bool  $force
      *
      * @return DataStorage
      *
@@ -192,7 +193,7 @@ trait DataStorage
     }
 
     /**
-     * @param string $key
+     * @param  string  $key
      *
      * @return mixed
      *
@@ -206,8 +207,8 @@ trait DataStorage
     }
 
     /**
-     * @param string $key
-     * @param mixed  $value
+     * @param  string  $key
+     * @param  mixed  $value
      *
      * @return DataStorage
      *
@@ -233,7 +234,7 @@ trait DataStorage
     }
 
     /**
-     * @param mixed $keys
+     * @param  mixed  $keys
      *
      * @return DataStorage
      *
