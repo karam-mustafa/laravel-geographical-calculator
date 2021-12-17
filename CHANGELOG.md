@@ -1,3 +1,7 @@
+v2.0.1
+--------
+* fix if there are no options inserted.
+
 v2.0.0
 --------
 * Refactor class names.
