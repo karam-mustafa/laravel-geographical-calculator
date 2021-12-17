@@ -1,12 +1,3 @@
-[coming] v2.1.0
---------
-* Added all function to get all package features.
-* Added Loops trait helper.
-* Improved getDistance and getCenter function to accept callback.
-* Improved traits design.
-
-
-
 v2.0.0
 --------
 * Refactor class names.
