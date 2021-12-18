@@ -44,11 +44,9 @@ jobs:
       run: |
         composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
         composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress
-    - name: Update Dusk Chromedriver
-      run: vendor/bin/dusk-updater detect --auto-update
 
     - name: Execute Unit Tests
-      run: composer test
+      run: vendor/bin/phpunit
 
     - name: Upload Failed Screenshots
       uses: actions/upload-artifact@v2-preview
