@@ -1,45 +1,58 @@
-name: run-tests
+name: Unit Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "*"
+  schedule:
+  - cron: '0 0 * * *'
 
 jobs:
-    tests:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            fail-fast: false
-            matrix:
-                os: [ubuntu-latest]
-                php: [8.1, 8.0]
-                laravel: [8.*]
-                dependency-version: [prefer-lowest, prefer-stable]
-                include:
-                    -   laravel: 8.*
-                        testbench: ^6.23
+  php-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      COMPOSER_NO_INTERACTION: 1
 
-        name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+    strategy:
+      matrix:
+        php: [8.0, 7.4, 7.3, 7.2]
+        laravel: [8.*, 6.*, 7.*]
+        dependency-version: [prefer-lowest, prefer-stable]
+        exclude:
+          - laravel: 8.*
+            php: 7.2
 
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v2
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
-            -   name: Install SQLite 3
-                run: |
-                    sudo apt-get update
-                    sudo apt-get install sqlite3
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: ${{ matrix.php }}
-                    extensions: curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, iconv
-                    coverage: none
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-            -   name: Install dependencies
-                run: |
-                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
-            -   name: Setup Problem Matches
-                run: |
-                    echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-                    echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-            -   name: Execute tests
-                run: vendor/bin/phpunit
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        coverage: none
+        tools: composer:v2
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif
+
+    - name: Install dependencies
+      run: |
+        composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+        composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress
+    - name: Update Dusk Chromedriver
+      run: vendor/bin/dusk-updater detect --auto-update
+
+    - name: Execute Unit Tests
+      run: composer test
+
+    - name: Upload Failed Screenshots
+      uses: actions/upload-artifact@v2-preview
+      if: failure()
+      with:
+        name: screenshots
+        path: tests/Browser/screenshots/*
