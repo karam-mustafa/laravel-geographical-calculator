@@ -5,10 +5,12 @@
 
 [coming] v2.1.0
 --------
+* Improved getDistance and getCenter function to accept callback.
 * Added all function to get all package features.
 * Added Loops trait helper.
-* Improved getDistance and getCenter function to accept callback.
 * Added nearest neighbor algorithm.
+* Added the closest point from a set of points to a custom point.
+* Added check if the point is located in a given area.
 
 v2.0.1
 --------

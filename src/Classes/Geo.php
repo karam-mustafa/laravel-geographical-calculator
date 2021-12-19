@@ -26,4 +26,18 @@ class Geo extends AbstractGeo implements GeoInterface
 
         return $this;
     }
+
+    /**
+     * todo implement feature container in v2.2.0.
+     *
+     * @inheritDoc
+     */
+    public function all($callback = null)
+    {
+        return $this->setInStorage('distances', $this->getDistance())
+            ->clearResult()
+            ->setInStorage('center', $this->getCenter())
+            ->getFromStorage(['center' , 'distances']);
+
+    }
 }

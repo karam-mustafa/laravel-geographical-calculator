@@ -5,7 +5,7 @@ namespace KMLaravel\GeographicalCalculator\Interfaces;
 interface GeoInterface
 {
     /**
-     * @param array $point
+     * @param  array  $point
      *
      * @author karam mustafa
      */
@@ -32,4 +32,12 @@ interface GeoInterface
      * @author karam mustafa
      */
     public function clearResult();
+
+    /**
+     * get all package features.
+     *
+     * @return  array
+     * @author karam mustafa
+     */
+    public function all();
 }

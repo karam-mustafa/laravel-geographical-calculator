@@ -65,13 +65,17 @@ trait DataStorage
     }
 
     /**
+     * @param  null|callable  $callback
+     *
      * @return mixed
      *
      * @author karam mustaf
      */
-    public function getResult()
+    public function getResult($callback = null)
     {
-        return $this->result;
+        return isset($callback)
+            ? $callback(collect($this->result))
+            : $this->result;
     }
 
     /**
@@ -109,9 +113,32 @@ trait DataStorage
      */
     public function getFromStorage($key = null)
     {
+        if (is_array($key)) {
+            return $this->getCustomKeysFromStorage($key);
+        }
         return isset($this->localStorage[$key])
             ? $this->localStorage[$key]
             : $this->localStorage;
+    }
+
+    /**
+     * if the key int getFromStorage is array, then we get each key from the storage
+     * this mean the user want a specific keys from storage.
+     *
+     * @param array $keys
+     *
+     * @return array
+     * @author karam mustafa
+     */
+    public function getCustomKeysFromStorage($keys)
+    {
+        $result = [];
+
+        foreach ($keys as $key) {
+            $result[$key] = $this->getFromStorage($key);
+        }
+
+        return $result;
     }
 
     /**
