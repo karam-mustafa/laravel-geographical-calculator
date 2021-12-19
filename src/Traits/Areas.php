@@ -7,11 +7,13 @@ trait Areas
     /**
      * get the center from a given data.
      *
-     * @return array|bool
+     * @param null|callable $callback
+     *
+     * @return array|bool|\Illuminate\Support\Collection
      *
      * @author karam mustafa
      */
-    public function getCenter()
+    public function getCenter($callback = null)
     {
 
         // set points count in the storage.
@@ -31,21 +33,15 @@ trait Areas
             $this->setInStorage('lat', $point[0] * pi() / 180);
             $this->setInStorage('long', $point[1] * pi() / 180);
             // set dimensions
-            $this->setInStorage(
-                'x',
-                (
-                    $this->getFromStorage('x') +
-                    cos($this->getFromStorage('lat')) * cos($this->getFromStorage('long'))
-                )
-            )->setInStorage(
-                'y',
-                (
-                    $this->getFromStorage('y') +
-                    cos($this->getFromStorage('lat')) * sin($this->getFromStorage('long'))
-                )
-            )->setInStorage(
-                'z',
-                (
+            $this->setInStorage('x', (
+                $this->getFromStorage('x') +
+                cos($this->getFromStorage('lat')) * cos($this->getFromStorage('long'))
+            )
+            )->setInStorage('y', (
+                $this->getFromStorage('y') +
+                cos($this->getFromStorage('lat')) * sin($this->getFromStorage('long'))
+            )
+            )->setInStorage('z', (
                 $this->getFromStorage('z') +
                 sin($this->getFromStorage('lat'))
             )
@@ -53,18 +49,20 @@ trait Areas
         }
 
         // divide each dimension to all point count.
-        return $this->resolveDimensionByPointsCount()
+        $result = $this->resolveDimensionByPointsCount()
             // set final lat and long
             ->resolveCoordinates()
             // register this lat and long in results,
             // so we can access this result from any next execution,
             // if we have multi process or tasks in future.
             ->setResult([
-                'lat'  => $this->getFromStorage('lat') * 180 / pi(),
+                'lat' => $this->getFromStorage('lat') * 180 / pi(),
                 'long' => $this->getFromStorage('long') * 180 / pi(),
-            ])
-            // get the final results.
-            ->getResult();
+            ]);
+
+        return isset($callback)
+            ? collect($callback($this->getReult()))
+            : $this->getResult();
     }
 
     /**

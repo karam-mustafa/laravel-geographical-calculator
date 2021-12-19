@@ -28,28 +28,6 @@ trait DataStorage
      */
     private $result = [];
     /**
-     * all the points to handle the selected requirement.
-     *
-     * @author karam mustafa
-     *
-     * @var array
-     */
-    public $points = [];
-    /**
-     * available units.
-     *
-     * @author karam mustafa
-     *
-     * @var array
-     */
-    private $units = [
-        'mile' => 1,
-        'km' => 1.609344,
-        'm' => (1.609344 * 1000),
-        'cm' => (1.609344 * 100),
-        'mm' => (1.609344 * 1000 * 1000),
-    ];
-    /**
      * for develop and resolve any options.
      *
      * @author karam mustafa
@@ -57,32 +35,6 @@ trait DataStorage
      * @var array
      */
     private $options = [];
-
-    /**
-     * get the available units.
-     *
-     * @return array
-     *
-     * @author karam mustafa
-     */
-    public function getUnits()
-    {
-        return $this->units;
-    }
-
-    /**
-     * @param  array  $units
-     *
-     * @return DataStorage
-     *
-     * @author karam mustaf
-     */
-    public function setUnits($units)
-    {
-        $this->units = $units;
-
-        return $this;
-    }
 
     /**
      * @param  mixed  $key
@@ -113,48 +65,6 @@ trait DataStorage
     }
 
     /**
-     * @param  null  $index
-     *
-     * @return array
-     *
-     * @author karam mustaf
-     */
-    public function getPoints($index = null)
-    {
-        return isset($this->points[$index])
-            ? $this->points[$index]
-            : $this->points;
-    }
-
-    /**
-     * @param $point
-     *
-     * @return DataStorage
-     *
-     * @author karam mustaf
-     */
-    public function setPoint($point)
-    {
-        $this->points[] = $point;
-
-        return $this;
-    }
-
-    /**
-     * @param  array  $points
-     *
-     * @return DataStorage
-     *
-     * @author karam mustaf
-     */
-    public function setPoints($points)
-    {
-        $this->points = array_merge($this->points, $points);
-
-        return $this;
-    }
-
-    /**
      * @return mixed
      *
      * @author karam mustaf
@@ -166,8 +76,6 @@ trait DataStorage
 
     /**
      * @param  mixed  $result
-     *
-     * @param  bool  $force
      *
      * @return DataStorage
      *
