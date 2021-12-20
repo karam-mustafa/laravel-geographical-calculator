@@ -7,7 +7,7 @@ trait Areas
     /**
      * get the center from a given data.
      *
-     * @param null|callable $callback
+     * @param  null|callable  $callback
      *
      * @return array|bool|\Illuminate\Support\Collection
      *
@@ -28,7 +28,7 @@ trait Areas
         $this->resetDimensions();
 
         // loop throughout each point and add the lat and long to each dimension.
-        foreach ($this->getPoints() as $point) {
+        $this->loop($this->getPoints(), function ($index, $point) {
             // set lat and long
             $this->setInStorage('lat', $point[0] * pi() / 180);
             $this->setInStorage('long', $point[1] * pi() / 180);
@@ -46,7 +46,7 @@ trait Areas
                 sin($this->getFromStorage('lat'))
             )
             );
-        }
+        });
 
         // divide each dimension to all point count.
         $result = $this->resolveDimensionByPointsCount()

@@ -9,6 +9,7 @@ trait Distances
     use DataStorage;
     use Formatter;
     use Debugger;
+    use Looper;
     /**
      * @author karam mustafa
      *
@@ -217,7 +218,7 @@ trait Distances
      */
     public function getDistance($callback = null)
     {
-        foreach ($this->getPoints() as $index => $point) {
+        $this->loop($this->getPoints(), function ($index, $point) {
             // check if we are not arrive to the last point yet.
             if (isset($this->getPoints()[$index + 1])) {
                 // init and calc sin and cos value
@@ -237,7 +238,7 @@ trait Distances
                     // save the results.
                     ->setResult([$this->getFromStorage('distance_key') => $this->calcDistance()]);
             }
-        }
+        });
 
         return isset($callback)
             ? $callback(collect($this->getResult()))
@@ -325,12 +326,12 @@ trait Distances
             sizeof($this->getOptions('units')) > 0
         ) {
             // loop in each unit and solve the distance.
-            foreach ($this->getOptions()['units'] as $unit) {
-                // check if the unit isset.
+            $this->loop($this->getOptions()['units'], function ($index, $unit) use ($distance) {
                 $this->checkIfUnitExists($unit)
                     // set the result in storage.
                     ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
-            }
+            });
+
         } else {
             // if there are not units, then get the default units property.
             $this->setInStorage('mile', $distance * $this->getUnits()['mile']);
@@ -338,7 +339,7 @@ trait Distances
 
         // remove un required results and get the results from storage.
         return $this
-            ->removeFromStorage('position', 'distance_key','distance', 'rad2deg', 'correctDistanceValue')
+            ->removeFromStorage('position', 'distance_key', 'distance', 'rad2deg', 'correctDistanceValue')
             ->getFromStorage();
     }
 
