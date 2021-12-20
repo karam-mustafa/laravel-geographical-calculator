@@ -218,7 +218,7 @@ trait Distances
      */
     public function getDistance($callback = null)
     {
-        $this->loop($this->getPoints(), function ($index, $point) {
+        $this->through($this->getPoints(), function ($index, $point) {
             // check if we are not arrive to the last point yet.
             if (isset($this->getPoints()[$index + 1])) {
                 // init and calc sin and cos value
@@ -326,7 +326,7 @@ trait Distances
             sizeof($this->getOptions('units')) > 0
         ) {
             // loop in each unit and solve the distance.
-            $this->loop($this->getOptions()['units'], function ($index, $unit) use ($distance) {
+            $this->through($this->getOptions()['units'], function ($index, $unit) use ($distance) {
                 $this->checkIfUnitExists($unit)
                     // set the result in storage.
                     ->setInStorage($unit, $distance * $this->getUnits()[$unit]);

@@ -27,8 +27,8 @@ trait Areas
         // reset all dimensions values.
         $this->resetDimensions();
 
-        // loop throughout each point and add the lat and long to each dimension.
-        $this->loop($this->getPoints(), function ($index, $point) {
+        // loop through each point and add the lat and long to each dimension.
+        $this->through($this->getPoints(), function ($index, $point) {
             // set lat and long
             $this->setInStorage('lat', $point[0] * pi() / 180);
             $this->setInStorage('long', $point[1] * pi() / 180);
@@ -92,13 +92,12 @@ trait Areas
      */
     private function resolveDimensionByPointsCount()
     {
-        foreach ($this->getFromStorage('dimensions') as $dimension) {
+        $this->through($this->getFromStorage('dimensions'), function ($index, $dimension) {
             $this->setInStorage(
                 $dimension,
                 ($this->getFromStorage($dimension) / $this->getFromStorage('pointsCount'))
             );
-        }
-
+        });
         return $this;
     }
 
