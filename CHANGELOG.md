@@ -1,3 +1,12 @@
+v2.2.0
+--------
+* Improved traits design.
+* Addeding Model scope
+
+ v2.1.0
+--------
+
+
 v2.0.1
 --------
 * fix if there are no options inserted.
