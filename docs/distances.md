@@ -1,6 +1,4 @@
-##### Usage:
-
-Basic usage
+Basic usage:
 ----------
 ```php
     // Define your points
@@ -26,12 +24,13 @@ Basic usage
             // the second and third point you add will shown like this:
             // "2-3" => ["km" => 1258.1691302282]
             //  and so on.
+            // you can use callback, the callback is return Collection instance of result.
             ->getDistance();
 
     return $distance;
 ```
 
-Options
+Options:
 ---------------
 ```php
     // If you set multiline units, the result will be each unit with the distance.
@@ -43,7 +42,7 @@ Options
     // the result will be [  "km" => 1258.1691302282, "mile" => 781.79005248609, "m" => 1258169.1302282, "cm" => 125816.91302282]
      return $distanceWithMultiUnits;
 ```
-All points at once
+All points at once:
 ---------------
 ```php
     // instead of calling setPoint each time
@@ -56,7 +55,48 @@ All points at once
             ])
             // and of course, you still can use getPoint again if you want.
             ->setPoint([33, 40])
+            // you can use callback, the callback is return Collection instance of result.
             ->getDistance();
+
+     return $allPoints;
+```
+
+Closest Point
+---------------
+```php
+     $closest  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setMainPoint([22, 37])
+            ->setPoints([
+                [22, 37],
+                [33, 40],
+                // .... other points
+            ])
+            // and of course, you still can use getPoint again if you want.
+            ->setPoint([33, 40])
+            // you can use callback, the callback is return Collection instance of result.
+            ->getClosest();
+
+     //  the result will be array of lat and long that you inserted before.
+     return $closest;
+```
+
+Callback functions
+---------------
+```php
+     // You can see that sometimes it can be confusing to deal with the output,
+     // so you can use callback in the getDistance function. 
+     $allPoints  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
+            ->setPoints([
+                [22, 37],
+                [33, 40],
+                // .... other points
+            ])
+            // and of course, you still can use getPoint again if you want.
+            ->setPoint([33, 40])
+            ->getDistance(function(\Illuminate\Support\Collection $result){
+                // you can do what you want on the result.
+                return $result->first();
+            });
+            // the result should be array contains lat value and long value
 
      return $allPoints;
 ```

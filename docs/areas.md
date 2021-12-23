@@ -1,4 +1,5 @@
-##### Get the center for a given coordinates
+Get the center for a given coordinates
+-------
 ```php
     // Define your points
     $center =  \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
@@ -29,3 +30,24 @@ All points at once
 
      return $center;
 ```
+Callback functions
+---------------
+```php
+     // You can see that sometimes it can be confusing to deal with the output,
+     // so you can use callback in the getDistance function.// 
+     $center  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoints([
+                [22, 37],
+                [33, 40],
+                // .... other points
+            ])
+            // and of course, you still can use getPoint again if you want.
+            ->setPoint([33, 40])
+            ->getCenter(function(\Illuminate\Support\Collection $result){
+                // you can do what you want on the result.
+                return $result->first();
+            });
+            // the result should be array contains lat value and long value
+
+     return $center;
+```
+

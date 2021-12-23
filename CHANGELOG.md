@@ -18,7 +18,7 @@ v2.0.1
 
 
 v2.0.0
---------
+--------،
 * Refactor class names.
 * Refactor distances calculations.
 * Added documents folder.

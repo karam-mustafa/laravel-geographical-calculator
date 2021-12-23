@@ -49,7 +49,7 @@ trait Areas
         });
 
         // divide each dimension to all point count.
-        $result = $this->resolveDimensionByPointsCount()
+        $this->resolveDimensionByPointsCount()
             // set final lat and long
             ->resolveCoordinates()
             // register this lat and long in results,
@@ -61,7 +61,7 @@ trait Areas
             ]);
 
         return isset($callback)
-            ? collect($callback($this->getReult()))
+            ? collect($callback($this->getResult()))
             : $this->getResult();
     }
 

@@ -22,22 +22,27 @@ class Geo extends AbstractGeo implements GeoInterface
         // we will empty these results
         if (property_exists(__CLASS__, 'result')) {
             $this->clearStoredResults();
+            $this->clearPoints()->clearStorage();
         }
 
         return $this;
     }
 
     /**
-     * todo implement feature container in v2.2.0.
      *
      * @inheritDoc
      */
-    public function all($callback = null)
+    public function allFeature($callback = null)
     {
-        return $this->setInStorage('distances', $this->getDistance())
-            ->clearResult()
+        return $this
+            ->setInStorage('points', $this->getPoints())
+            ->clearStoredResults()->clearPoints()
+            ->setPoints($this->getFromStorage('points'))
+            ->clearStorage()
+            ->setInStorage('closest', $this->getClosest())
+            ->setInStorage('distances', $this->getDistance())
             ->setInStorage('center', $this->getCenter())
-            ->getFromStorage(['center' , 'distances']);
+            ->getFromStorage(['center', 'distances', 'closest']);
 
     }
 }

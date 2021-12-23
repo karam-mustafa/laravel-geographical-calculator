@@ -9,10 +9,12 @@ use KMLaravel\GeographicalCalculator\Classes\Geo;
  * @method Geo setPoint(array $point)
  * @method Geo setPoints(array $points)
  * @method Geo setOptions(array $options)
+ * @method Geo setMainPoint(array $point)
+ * @method Geo clearResult()
  * @method Geo getDistance($callback)
  * @method Geo getCenter($callback)
- * @method Geo all($callback)
- * @method Geo clearResult()
+ * @method Geo allFeature($callback)
+ * @method Geo getClosest()
  */
 class GeoFacade extends Facade
 {

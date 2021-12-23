@@ -3,6 +3,7 @@
 namespace KMLaravel\GeographicalCalculator\Traits;
 
 use Exception;
+use Illuminate\Support\Collection;
 
 trait Distances
 {
@@ -56,6 +57,15 @@ trait Distances
     public $points = [];
 
     /**
+     * Main point that used to compare the closest points to the specific point.
+     *
+     * @author karam mustafa
+     *
+     * @var array
+     */
+    public $mainPoint = [];
+
+    /**
      * @param  null  $index
      *
      * @return array
@@ -84,6 +94,30 @@ trait Distances
     }
 
     /**
+     * @return array
+     *
+     * @author karam mustaf
+     */
+    public function getMainPoint()
+    {
+        return $this->mainPoint;
+    }
+
+    /**
+     * @param $point
+     *
+     * @return DataStorage
+     *
+     * @author karam mustaf
+     */
+    public function setMainPoint($point)
+    {
+        $this->mainPoint = $point;
+
+        return $this;
+    }
+
+    /**
      * @param  array  $points
      *
      * @return DataStorage
@@ -93,6 +127,20 @@ trait Distances
     public function setPoints($points)
     {
         $this->points = array_merge($this->points, $points);
+
+        return $this;
+    }
+
+    /**
+     * clear all stored points.
+     *
+     * @return DataStorage
+     *
+     * @author karam mustaf
+     */
+    public function clearPoints()
+    {
+        $this->points = [];
 
         return $this;
     }
@@ -240,9 +288,30 @@ trait Distances
             }
         });
 
-        return isset($callback)
-            ? $callback(collect($this->getResult()))
-            : $this->getResult();
+        return $this->resolveCallbackResult($this->cleanDistanceResult(), $callback);
+    }
+
+    /**
+     * get the closest point to the main point.
+     *
+     * @param  null|callable  $callback
+     *
+     * @return mixed
+     * @author karam mustafa
+     */
+    public function getClosest($callback = null)
+    {
+        $this->resolveEachDistanceToMainPoint();
+
+        // set the closest point index after we sort the distances result.
+        $this->setInStorage('closestPointIndex',
+            collect($this->getFromStorage('distancesEachPointToMainPoint'))->sort()->keys()->first());
+
+        $this->setResult([
+            "closest" => $this->getFromStorage('points')[$this->getFromStorage('closestPointIndex')],
+        ]);
+
+        return $this->resolveCallbackResult($this->getResultByKey('closest'), $callback);
     }
 
     /**
@@ -374,5 +443,49 @@ trait Distances
         }
 
         return $this;
+    }
+
+    /**
+     * get each point and calculate it distance to the main point.
+     *
+     * @author karam mustafa
+     */
+    private function resolveEachDistanceToMainPoint()
+    {
+        // store the all points in the points key in the storage
+        $this->setInStorage('points', $this->getPoints());
+
+        // empty all points after we store them in the storage.
+        $this->clearPoints();
+        // get the first unit inserted from a config or from the default config
+        // the dose not matter what is the unit we use to sort the result.
+        $this->setInStorage('unit', collect($this->getUnits())->keys()->first());
+
+        $this->through($this->getFromStorage('points'), function ($index, $point) {
+
+            // calculate distance for each point in the points
+            // and append this distance to closestDistance storage key.
+            $this->appendToStorage('distancesEachPointToMainPoint',
+                $this->setPoints([$this->getMainPoint(), $point])
+                    ->getDistance(function (Collection $result) {
+                        return $result->first()[$this->getFromStorage('unit')];
+                    })
+
+            );
+            // re remove the points to calculate a new distance.
+            $this->clearPoints();
+        });
+
+    }
+
+    function cleanDistanceResult()
+    {
+        return $this->getResult(function ($result) {
+            return collect($result)->filter(function ($results) {
+                return collect($results)->filter(function ($value, $key) {
+                    return in_array($key, array_keys($this->getUnits()));
+                });
+            });
+        })->toArray();
     }
 }

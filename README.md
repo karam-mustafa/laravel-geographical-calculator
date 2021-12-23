@@ -25,8 +25,11 @@ php artisan geo:install
 
 Features
 -----------
-- [Distances](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md)
-- [Areas](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/areas.md)
+- [Get the distance between one or more of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md#basic-usage)
+- [Get the center between set of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/areas.md#get-the-center-for-a-given-coordinates)
+- [Get the closest point to the specific point](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md)
+- [Get a ranking of points by the nearest neighbor algorithm](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md)
+- [Get all package features](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md)
 
 
 config options

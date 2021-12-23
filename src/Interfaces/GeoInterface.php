@@ -39,5 +39,5 @@ interface GeoInterface
      * @return  array
      * @author karam mustafa
      */
-    public function all();
+    public function allFeature();
 }

@@ -79,6 +79,19 @@ trait DataStorage
     }
 
     /**
+     * @param  null|string  $key
+     *
+     * @return mixed
+     *
+     * @author karam mustaf
+     */
+    public function getResultByKey($key = null)
+    {
+        return isset($this->result[$key])
+            ? $this->result[$key]
+            : $this->result;
+    }
+    /**
      * @param  mixed  $result
      *
      * @return DataStorage
@@ -93,13 +106,32 @@ trait DataStorage
     }
 
     /**
+     * @param string $key
+     * @param mixed $value
+     *
+     * @return DataStorage
+     *
+     * @author karam mustaf
+     */
+    public function appendToStorage($key, $value)
+    {
+        if (!isset($this->localStorage[$key])) {
+            $this->localStorage[$key] = [];
+        }
+
+        $this->localStorage[$key][] = $value;
+
+        return $this;
+    }
+
+    /**
      * @return DataStorage
      *
      * @author karam mustaf
      */
     public function clearStoredResults()
     {
-        $this->result = [];
+        $this->result  = [];
 
         return $this;
     }
@@ -125,7 +157,7 @@ trait DataStorage
      * if the key int getFromStorage is array, then we get each key from the storage
      * this mean the user want a specific keys from storage.
      *
-     * @param array $keys
+     * @param  array  $keys
      *
      * @return array
      * @author karam mustafa
@@ -184,5 +216,22 @@ trait DataStorage
         }
 
         return $this;
+    }
+
+    /**
+     * check if there is a callback, then inject the result in it.
+     * else basically return the result.
+     *
+     * @param mixed $result
+     * @param null|callable $callback
+     *
+     * @return mixed
+     * @author karam mustafa
+     */
+    private function resolveCallbackResult($result, $callback)
+    {
+        return isset($callback)
+            ? $callback(collect($result))
+            : $result;
     }
 }
