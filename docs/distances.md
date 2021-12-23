@@ -75,7 +75,7 @@ Closest Point
             // you can use callback, the callback is return Collection instance of result.
             ->getClosest();
 
-     //  the result will be array of lat and long that you inserted before.
+     //  the result will be array of [pointIndex => [lat , long]] that you inserted before.
      return $closest;
 ```
 

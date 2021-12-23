@@ -6,9 +6,11 @@ use KMLaravel\GeographicalCalculator\Abstracts\AbstractGeo;
 use KMLaravel\GeographicalCalculator\Interfaces\GeoInterface;
 use KMLaravel\GeographicalCalculator\Traits\Areas;
 use KMLaravel\GeographicalCalculator\Traits\Distances;
+use KMLaravel\GeographicalCalculator\Traits\GeoTraitContainer;
 
 class Geo extends AbstractGeo implements GeoInterface
 {
+    use GeoTraitContainer;
     use Areas;
     use Distances;
 

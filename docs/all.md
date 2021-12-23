@@ -2,7 +2,7 @@ All features in one function:
 ----------
 ```php
     // Define your points
-    $all =  \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
+    $allFeature =  \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
             // add your options, the default value for the unit is mile.
             ->setOptions(['units' => ['km']])
 
@@ -11,7 +11,7 @@ All features in one function:
             // ->setPoint([lat, long])
             ->setPoint([33, 40])
             ->allFeature();
-    // the result will be array contains ['distance' => 'the distances output' , 'center' => 'the center output']
+    // the result will be array contains ['distance' => '...' , 'center' => '...', 'closest' => '...]
     // each output was described in docs files.
-    return $all;
+    return $allFeature;
 ```
