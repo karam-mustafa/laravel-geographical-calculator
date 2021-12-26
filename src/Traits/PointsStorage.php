@@ -51,6 +51,21 @@ trait PointsStorage
     }
 
     /**
+     * @param  int  $indexAt
+     * @param  null|callable  $callback
+     *
+     * @return PointsStorage
+     *
+     * @author karam mustaf
+     */
+    public function updatePoint($indexAt = 0 , $callback = null)
+    {
+        $this->points[$indexAt] = $callback($this->points[$indexAt]);
+
+        return $this;
+    }
+
+    /**
      * @return array
      *
      * @author karam mustaf
@@ -84,6 +99,20 @@ trait PointsStorage
     public function setPoints($points)
     {
         $this->points = array_merge($this->points, $points);
+
+        return $this;
+    }
+
+    /**
+     * @param  array  $points
+     *
+     * @return PointsStorage
+     *
+     * @author karam mustaf
+     */
+    public function replacePoints($points)
+    {
+        $this->points = $points;
 
         return $this;
     }
