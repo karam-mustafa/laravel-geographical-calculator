@@ -2,6 +2,7 @@
 
 namespace KMLaravel\GeographicalCalculator\Classes;
 
+use Illuminate\Support\Collection;
 use KMLaravel\GeographicalCalculator\Abstracts\AbstractGeo;
 use KMLaravel\GeographicalCalculator\Interfaces\GeoInterface;
 use KMLaravel\GeographicalCalculator\Traits\Areas;
@@ -9,12 +10,32 @@ use KMLaravel\GeographicalCalculator\Traits\Distances;
 use KMLaravel\GeographicalCalculator\Traits\GeoTraitContainer;
 use KMLaravel\GeographicalCalculator\Traits\Ordering;
 
+/**
+ * Class Geo
+ *
+ * @author karam mustafa
+ * @package KMLaravel\GeographicalCalculator\Classes
+ */
 class Geo extends AbstractGeo implements GeoInterface
 {
     use GeoTraitContainer;
     use Areas;
     use Distances;
     use Ordering;
+
+    /**
+     * all the package feature, this array contains only the name of the feature
+     * if you want to use the feature, then the feature should be such as a getter method.
+     * @author karam mustafa
+     * @example if you want to use distance => yous should resolve the selected key from this array
+     * and add get key word.
+     * ['distance' => 'getDistance']
+     * @var array
+     */
+    private $allFeatures = [
+        'Center',
+        'Distance',
+    ];
 
     /**
      * @inheritDoc
@@ -38,14 +59,22 @@ class Geo extends AbstractGeo implements GeoInterface
      */
     public function allFeature($callback = null)
     {
-        return $this
-            ->setInStorage('points', $this->getPoints())
-            ->clearStoredResults()->clearPoints()
-            ->setPoints($this->getFromStorage('points'))
-            ->clearStorage()
-            ->setInStorage('closest', $this->getClosest())
-            ->setInStorage('distances', $this->getDistance())
-            ->setInStorage('center', $this->getCenter())
-            ->getFromStorage(['center', 'distances', 'closest']);
+
+        foreach ($this->allFeatures as $feature) {
+            if ($this->inStorage('points')) {
+                $this->setPoint($this->getFromStorage('points'));
+            } else {
+                $this->setInStorage('points', $this->getPoints());
+            }
+
+            $this->setResult([strtolower($feature) => $this->{"get".$feature}()]);
+
+            $this->clearPoints();
+            $this->clearStorage();
+
+        }
+        return $this->getResult(function (Collection $results){
+            return $results->only('center','distance');
+        });
     }
 }

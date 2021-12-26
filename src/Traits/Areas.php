@@ -26,12 +26,11 @@ trait Areas
 
         // reset all dimensions values.
         $this->resetDimensions();
-
         // loop through each point and add the lat and long to each dimension.
         $this->through($this->getPoints(), function ($index, $point) {
             // set lat and long
-            $this->setInStorage('lat', $point[0] * pi() / 180);
-            $this->setInStorage('long', $point[1] * pi() / 180);
+            $this->setInStorage('lat', ($point[0] * pi() / 180));
+            $this->setInStorage('long', ($point[1] * pi() / 180));
             // set dimensions
             $this->setInStorage(
                 'x',

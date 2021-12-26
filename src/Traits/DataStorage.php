@@ -107,8 +107,8 @@ trait DataStorage
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
+     * @param  string  $key
+     * @param  mixed  $value
      *
      * @return DataStorage
      *
@@ -116,7 +116,7 @@ trait DataStorage
      */
     public function appendToStorage($key, $value)
     {
-        if (! isset($this->localStorage[$key])) {
+        if (!isset($this->localStorage[$key])) {
             $this->localStorage[$key] = [];
         }
 
@@ -153,6 +153,18 @@ trait DataStorage
         return isset($this->localStorage[$key])
             ? $this->localStorage[$key]
             : $this->localStorage;
+    }
+
+    /**
+     * @param  string  $key
+     *
+     * @return mixed
+     *
+     * @author karam mustaf
+     */
+    public function inStorage($key = null)
+    {
+        return isset($this->localStorage[$key]);
     }
 
     /**
@@ -224,8 +236,8 @@ trait DataStorage
      * check if there is a callback, then inject the result in it.
      * else basically return the result.
      *
-     * @param mixed $result
-     * @param null|callable $callback
+     * @param  mixed  $result
+     * @param  null|callable  $callback
      *
      * @return mixed
      * @author karam mustafa
