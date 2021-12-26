@@ -142,8 +142,8 @@ trait Ordering
         // and mark this point as a visited point
         array_push($this->pointsAppendedBefore, $pointNameToPush);
 
-//        // assign the calculated distance to it.
-//        $res[$pointNameToPush]['distance'] = $distance;
+        // assign the calculated distance to it.
+        // $res[$pointNameToPush]['distance'] = $distance;
 
         // Get the new points array without the visited points.
         $points = collect($points)->whereNotIn($key, $this->pointsAppendedBefore);
@@ -154,7 +154,7 @@ trait Ordering
 
     /**
      * this function will go through each point, and add the key to it.
-     *
+     * @return  void
      * @author karam mustafa
      */
     private function resolveKeyForEachPoint()
