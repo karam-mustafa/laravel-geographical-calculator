@@ -20,7 +20,7 @@ trait Areas
         $this->setInStorage('pointsCount', count($this->getPoints()));
 
         // check if there are points or not.
-        if (!$this->getFromStorage('pointsCount')) {
+        if (! $this->getFromStorage('pointsCount')) {
             return false;
         }
 
@@ -33,15 +33,21 @@ trait Areas
             $this->setInStorage('lat', $point[0] * pi() / 180);
             $this->setInStorage('long', $point[1] * pi() / 180);
             // set dimensions
-            $this->setInStorage('x', (
+            $this->setInStorage(
+                'x',
+                (
                 $this->getFromStorage('x') +
                 cos($this->getFromStorage('lat')) * cos($this->getFromStorage('long'))
             )
-            )->setInStorage('y', (
+            )->setInStorage(
+                'y',
+                (
                 $this->getFromStorage('y') +
                 cos($this->getFromStorage('lat')) * sin($this->getFromStorage('long'))
             )
-            )->setInStorage('z', (
+            )->setInStorage(
+                'z',
+                (
                 $this->getFromStorage('z') +
                 sin($this->getFromStorage('lat'))
             )
@@ -98,6 +104,7 @@ trait Areas
                 ($this->getFromStorage($dimension) / $this->getFromStorage('pointsCount'))
             );
         });
+
         return $this;
     }
 

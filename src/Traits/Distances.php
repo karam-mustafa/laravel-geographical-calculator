@@ -7,7 +7,6 @@ use Illuminate\Support\Collection;
 
 trait Distances
 {
-
     /**
      * @author karam mustafa
      *
@@ -156,7 +155,7 @@ trait Distances
     /**
      * Finding the distance of points using several given coordinate points.
      *
-     * @param  null|callback  $callback
+     * @param  null|callable  $callback
      *
      * @return array|\Illuminate\Support\Collection
      *
@@ -204,12 +203,14 @@ trait Distances
         $this->resolveEachDistanceToMainPoint();
 
         // set the closest point index after we sort the distances result.
-        $this->setInStorage('closestPointIndex',
-            collect($this->getFromStorage('distancesEachPointToMainPoint'))->sort()->keys()->first());
+        $this->setInStorage(
+            'closestPointIndex',
+            collect($this->getFromStorage('distancesEachPointToMainPoint'))->sort()->keys()->first()
+        );
 
         $this->setResult([
             "closest" => [
-                $this->getFromStorage('closestPointIndex') => $this->getFromStorage('points')[$this->getFromStorage('closestPointIndex')]
+                $this->getFromStorage('closestPointIndex') => $this->getFromStorage('points')[$this->getFromStorage('closestPointIndex')],
             ],
         ]);
 
@@ -257,11 +258,14 @@ trait Distances
      */
     private function calcDistance()
     {
-        $this->setInStorage('distance',
+        $this->setInStorage(
+            'distance',
             acos($this->getSin() + $this->getCos() * $this->getValueForAngleBetween())
-        )->setInStorage('rad2deg',
+        )->setInStorage(
+            'rad2deg',
             rad2deg($this->getFromStorage('distance'))
-        )->setInStorage('correctDistanceValue',
+        )->setInStorage(
+            'correctDistanceValue',
             $this->correctDistanceValue($this->getFromStorage('rad2deg'))
         );
 
@@ -302,7 +306,6 @@ trait Distances
                     // set the result in storage.
                     ->setInStorage($unit, $distance * $this->getUnits()[$unit]);
             });
-
         } else {
             // if there are not units, then get the default units property.
             $this->setInStorage('mile', $distance * $this->getUnits()['mile']);
@@ -313,7 +316,6 @@ trait Distances
             ->removeFromStorage('position', 'distance_key', 'distance', 'rad2deg', 'correctDistanceValue')
             ->getFromStorage();
     }
-
 
     /**
      * check if user chose any units.
@@ -340,7 +342,7 @@ trait Distances
      */
     private function checkIfUnitExists($unit)
     {
-        if (!isset($this->getUnits()[$unit])) {
+        if (! isset($this->getUnits()[$unit])) {
             throw new Exception("the unit ['$unit'] dose not available in units config");
         }
 
@@ -367,18 +369,17 @@ trait Distances
 
             // calculate distance for each point in the points
             // and append this distance to closestDistance storage key.
-            $this->appendToStorage('distancesEachPointToMainPoint',
+            $this->appendToStorage(
+                'distancesEachPointToMainPoint',
                 $this->setPoints([$this->getMainPoint(), $point])
                     ->getDistance(function (Collection $result) {
                         return $result->first()[$this->getFromStorage('unit')];
                     })
-
             );
 
             // re remove the points to calculate a new distance.
             $this->clearPoints();
         });
-
     }
 
     /**
@@ -387,7 +388,7 @@ trait Distances
      * @return mixed
      * @author karam mustafa
      */
-    function cleanDistanceResult()
+    public function cleanDistanceResult()
     {
         return $this->getResult(function ($result) {
             return collect($result)->filter(function ($results) {
