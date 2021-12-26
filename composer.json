@@ -9,12 +9,24 @@
             "homepage": "https://github.com/karam-mustafa"
         }
     ],
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "prefer-stable": true,
+    "require-dev": {
+        "orchestra/testbench": "^6.23"
+    },
     "autoload" : {
         "psr-4": {
             "KMLaravel\\GeographicalCalculator\\" : "src/",
-
             "KMLaravel\\GeographicalCalculator\\Tests\\" : "src/tests"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "autoload-dev": {
     },
@@ -24,8 +36,5 @@
               "KMLaravel\\GeographicalCalculator\\Providers\\GeoServiceProviders"
           ]
       }
-    },
-    "require": {
-        "phpunit/phpunit": "^9.5"
     }
 }
