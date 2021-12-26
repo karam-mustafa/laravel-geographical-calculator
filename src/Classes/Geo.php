@@ -7,12 +7,14 @@ use KMLaravel\GeographicalCalculator\Interfaces\GeoInterface;
 use KMLaravel\GeographicalCalculator\Traits\Areas;
 use KMLaravel\GeographicalCalculator\Traits\Distances;
 use KMLaravel\GeographicalCalculator\Traits\GeoTraitContainer;
+use KMLaravel\GeographicalCalculator\Traits\Ordering;
 
 class Geo extends AbstractGeo implements GeoInterface
 {
     use GeoTraitContainer;
     use Areas;
     use Distances;
+    use Ordering;
 
     /**
      * @inheritDoc

@@ -13,6 +13,14 @@ trait Distances
      * @var array
      */
     private $longs = [];
+
+    /**
+     * @author karam mustafa
+     *
+     * @var array
+     */
+    private $pointsAppendedBefore = [];
+
     /**
      * sin value.
      *
@@ -191,33 +199,6 @@ trait Distances
     }
 
     /**
-     * get the closest point to the main point.
-     *
-     * @param  null|callable  $callback
-     *
-     * @return mixed
-     * @author karam mustafa
-     */
-    public function getClosest($callback = null)
-    {
-        $this->resolveEachDistanceToMainPoint();
-
-        // set the closest point index after we sort the distances result.
-        $this->setInStorage(
-            'closestPointIndex',
-            collect($this->getFromStorage('distancesEachPointToMainPoint'))->sort()->keys()->first()
-        );
-
-        $this->setResult([
-            "closest" => [
-                $this->getFromStorage('closestPointIndex') => $this->getFromStorage('points')[$this->getFromStorage('closestPointIndex')],
-            ],
-        ]);
-
-        return $this->resolveCallbackResult($this->getResultByKey('closest'), $callback);
-    }
-
-    /**
      * get the sin or cos values multiply.
      *
      * @param  int  $firstLat
@@ -342,7 +323,7 @@ trait Distances
      */
     private function checkIfUnitExists($unit)
     {
-        if (! isset($this->getUnits()[$unit])) {
+        if (!isset($this->getUnits()[$unit])) {
             throw new Exception("the unit ['$unit'] dose not available in units config");
         }
 
