@@ -1,8 +1,6 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Traits;
-
 
 trait Ordering
 {
@@ -16,7 +14,6 @@ trait Ordering
      */
     public function getClosest($callback = null)
     {
-
         $this->resolveEachDistanceToMainPoint();
 
         // set the closest point index after we sort the distances result.
@@ -47,7 +44,7 @@ trait Ordering
 
         // append main point as a first point in points array.
         $this->replacePoints(array_merge([
-            [$this->getMainPoint()[0], $this->getMainPoint()[1], 'key' => 0]
+            [$this->getMainPoint()[0], $this->getMainPoint()[1], 'key' => 0],
         ], $this->getPoints()));
 
         return $this->nearestNeighborAlgorithm($this->getPoints());
@@ -121,14 +118,13 @@ trait Ordering
             $distanceCalc = $this->setPoints([
                 [$lastPoint[0], $lastPoint[1]],
                 [$point[0], $point[1]],
-            ])->setOptions(['units' => ['km']])->getDistance(function ($point){
+            ])->setOptions(['units' => ['km']])->getDistance(function ($point) {
                 return $point->first()['km'];
             });
 
             // if the calculation result is lower than the last distance value
             // this mean we are finding now point that closest than the previous results.
             if ($distanceCalc < $distance) {
-
                 $distance = $distanceCalc;
 
                 $pointNameToPush = $points[$pointKey][$key];
@@ -154,7 +150,6 @@ trait Ordering
 
         // re call the previous implementation, until we visit all points.
         return $this->nearestNeighborAlgorithm($points, $res, $sizeOfPoints, $key);
-
     }
 
     /**
@@ -170,5 +165,4 @@ trait Ordering
             });
         }
     }
-
 }

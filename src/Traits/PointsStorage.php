@@ -58,7 +58,7 @@ trait PointsStorage
      *
      * @author karam mustaf
      */
-    public function updatePoint($indexAt = 0 , $callback = null)
+    public function updatePoint($indexAt = 0, $callback = null)
     {
         $this->points[$indexAt] = $callback($this->points[$indexAt]);
 
