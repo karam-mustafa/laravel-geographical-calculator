@@ -35,21 +35,21 @@ trait Areas
             $this->setInStorage(
                 'x',
                 (
-                $this->getFromStorage('x') +
+                    $this->getFromStorage('x') +
                 cos($this->getFromStorage('lat')) * cos($this->getFromStorage('long'))
-            )
+                )
             )->setInStorage(
                 'y',
                 (
-                $this->getFromStorage('y') +
+                    $this->getFromStorage('y') +
                 cos($this->getFromStorage('lat')) * sin($this->getFromStorage('long'))
-            )
+                )
             )->setInStorage(
                 'z',
                 (
-                $this->getFromStorage('z') +
+                    $this->getFromStorage('z') +
                 sin($this->getFromStorage('lat'))
-            )
+                )
             );
         });
 
