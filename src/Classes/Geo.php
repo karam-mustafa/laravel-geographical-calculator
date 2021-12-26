@@ -49,7 +49,8 @@ class Geo extends AbstractGeo implements GeoInterface
         // we will empty these results
         if (property_exists(__CLASS__, 'result')) {
             $this->clearStoredResults();
-            $this->clearPoints()->clearStorage();
+            $this->clearPoints();
+            $this->clearStorage();
         }
 
         return $this;
@@ -61,6 +62,7 @@ class Geo extends AbstractGeo implements GeoInterface
      */
     public function allFeature($callback = null)
     {
+
         foreach ($this->allFeatures as $feature) {
             if ($this->inStorage('points')) {
                 $this->setPoint($this->getFromStorage('points'));
@@ -72,10 +74,10 @@ class Geo extends AbstractGeo implements GeoInterface
 
             $this->clearPoints();
             $this->clearStorage();
-        }
 
-        return $this->getResult(function (Collection $results) {
-            return $results->only('center', 'distance');
+        }
+        return $this->getResult(function (Collection $results){
+            return $results->only('center','distance');
         })->toArray();
     }
 }
