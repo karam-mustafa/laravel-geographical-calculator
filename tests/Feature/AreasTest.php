@@ -16,7 +16,7 @@ class AreasTest extends OrchestraTestCase
      */
     public function test_center()
     {
-        $result = (new Geo)->setPoint([22, 37])
+        $result = (new Geo())->setPoint([22, 37])
             ->setPoint([33, 40])
             ->getCenter();
 

@@ -16,13 +16,13 @@ class DistanceTest extends OrchestraTestCase
      */
     public function test_distance()
     {
-        $result = (new Geo)->setPoint([22, 37])
+        $result = (new Geo())->setPoint([22, 37])
             ->setOptions(['units' => ['km']])
             ->setPoint([33, 40])
             ->getDistance();
 
         $this->assertEquals([
-            '1-2' => ['km' => 1258.1691302282]
+            '1-2' => ['km' => 1258.1691302282],
         ], $result);
     }
 }
