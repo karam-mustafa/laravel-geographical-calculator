@@ -91,6 +91,7 @@ trait DataStorage
             ? $this->result[$key]
             : $this->result;
     }
+
     /**
      * @param  mixed  $result
      *
@@ -115,7 +116,7 @@ trait DataStorage
      */
     public function appendToStorage($key, $value)
     {
-        if (!isset($this->localStorage[$key])) {
+        if (! isset($this->localStorage[$key])) {
             $this->localStorage[$key] = [];
         }
 
@@ -131,7 +132,7 @@ trait DataStorage
      */
     public function clearStoredResults()
     {
-        $this->result  = [];
+        $this->result = [];
 
         return $this;
     }
@@ -148,6 +149,7 @@ trait DataStorage
         if (is_array($key)) {
             return $this->getCustomKeysFromStorage($key);
         }
+
         return isset($this->localStorage[$key])
             ? $this->localStorage[$key]
             : $this->localStorage;

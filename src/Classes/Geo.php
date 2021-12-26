@@ -45,6 +45,5 @@ class Geo extends AbstractGeo implements GeoInterface
             ->setInStorage('distances', $this->getDistance())
             ->setInStorage('center', $this->getCenter())
             ->getFromStorage(['center', 'distances', 'closest']);
-
     }
 }
