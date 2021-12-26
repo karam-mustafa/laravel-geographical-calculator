@@ -124,7 +124,7 @@ trait Ordering
             ])->setOptions(['units' => ['km']])->getDistance(function ($point){
                 return $point->first()['km'];
             });
-            dump([$distanceCalc,$lastPoint,$point]);
+
             // if the calculation result is lower than the last distance value
             // this mean we are finding now point that closest than the previous results.
             if ($distanceCalc < $distance) {
@@ -146,8 +146,8 @@ trait Ordering
         // and mark this point as a visited point
         array_push($this->pointsAppendedBefore, $pointNameToPush);
 
-        // assign the calculated distance to it.
-        $res[$pointNameToPush]['distance'] = $distance;
+//        // assign the calculated distance to it.
+//        $res[$pointNameToPush]['distance'] = $distance;
 
         // Get the new points array without the visited points.
         $points = collect($points)->whereNotIn($key, $this->pointsAppendedBefore);
