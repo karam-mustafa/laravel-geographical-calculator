@@ -2,10 +2,10 @@
 
 namespace KMLaravel\GeographicalCalculator\Tests\Feature;
 
-use KMLaravel\GeographicalCalculator\Facade\GeoFacade;
-use PHPUnit\Framework\TestCase;
+use KMLaravel\GeographicalCalculator\Classes\Geo;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-class AreasTest extends TestCase
+class AreasTest extends OrchestraTestCase
 {
     /**
      * test if the center equal the correct center by given coordinates.
@@ -16,7 +16,7 @@ class AreasTest extends TestCase
      */
     public function test_center()
     {
-        $result = GeoFacade::setPoint([22, 37])
+        $result = (new Geo)->setPoint([22, 37])
             ->setPoint([33, 40])
             ->getCenter();
 

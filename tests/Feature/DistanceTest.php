@@ -2,25 +2,27 @@
 
 namespace KMLaravel\GeographicalCalculator\Tests\Feature;
 
-use KMLaravel\GeographicalCalculator\Facade\GeoFacade;
-use PHPUnit\Framework\TestCase;
+use KMLaravel\GeographicalCalculator\Classes\Geo;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-class DistanceTest extends TestCase
+class DistanceTest extends OrchestraTestCase
 {
     /**
      * test if the distance equal the correct distance by given coordinate.
      *
+     * @return void
      * @throws \Exception
      *
-     * @return void
      */
     public function test_distance()
     {
-        $result = GeoFacade::setPoint([22, 37])
+        $result = (new Geo)->setPoint([22, 37])
             ->setOptions(['units' => ['km']])
             ->setPoint([33, 40])
             ->getDistance();
 
-        $this->assertEquals(['km' => 1258.1691302282], $result);
+        $this->assertEquals([
+            '1-2' => ['km' => 1258.1691302282]
+        ], $result);
     }
 }
