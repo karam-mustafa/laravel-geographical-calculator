@@ -26,10 +26,12 @@ class Geo extends AbstractGeo implements GeoInterface
     /**
      * all the package feature, this array contains only the name of the feature
      * if you want to use the feature, then the feature should be such as a getter method.
-     * @author karam mustafa
+     *
      * @example if you want to use distance => yous should resolve the selected key from this array
      * and add get key word.
      * ['distance' => 'getDistance']
+     *
+     * @author karam mustafa
      * @var array
      */
     private $allFeatures = [
