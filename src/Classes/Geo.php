@@ -75,6 +75,6 @@ class Geo extends AbstractGeo implements GeoInterface
         }
         return $this->getResult(function (Collection $results){
             return $results->only('center','distance');
-        });
+        })->toArray();
     }
 }
