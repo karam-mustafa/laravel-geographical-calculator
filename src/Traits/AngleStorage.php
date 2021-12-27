@@ -1,8 +1,6 @@
 <?php
 
-
 namespace KMLaravel\GeographicalCalculator\Traits;
-
 
 trait AngleStorage
 {
@@ -122,5 +120,4 @@ trait AngleStorage
     {
         $this->longs = [];
     }
-
 }

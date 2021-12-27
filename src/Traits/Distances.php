@@ -7,7 +7,6 @@ use Illuminate\Support\Collection;
 
 trait Distances
 {
-
     /**
      * available units.
      *
@@ -220,7 +219,7 @@ trait Distances
      */
     private function checkIfUnitExists($unit)
     {
-        if (!isset($this->getUnits()[$unit])) {
+        if (! isset($this->getUnits()[$unit])) {
             throw new Exception("the unit ['$unit'] dose not available in units config");
         }
 

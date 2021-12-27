@@ -33,7 +33,8 @@ class DistanceTest extends OrchestraTestCase
      * @return Geo|GeoInterface
      * @author karam mustafa
      */
-    public function newGeoInstance(){
+    public function newGeoInstance()
+    {
         return (new Geo())->clearResult();
     }
 }

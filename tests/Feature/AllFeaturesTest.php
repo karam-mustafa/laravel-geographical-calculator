@@ -38,7 +38,6 @@ class AllFeaturesTest extends OrchestraTestCase
             "distance" => $distance,
             "center" => $center,
         ], $all);
-
     }
 
     /**
@@ -47,7 +46,8 @@ class AllFeaturesTest extends OrchestraTestCase
      * @return Geo|GeoInterface
      * @author karam mustafa
      */
-    public function newGeoInstance(){
+    public function newGeoInstance()
+    {
         return (new Geo())->clearResult();
     }
 }

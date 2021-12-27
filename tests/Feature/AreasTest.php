@@ -27,14 +27,14 @@ class AreasTest extends OrchestraTestCase
         ], $result);
     }
 
-
     /**
      * get clean instance of geo class.
      *
      * @return Geo|GeoInterface
      * @author karam mustafa
      */
-    public function newGeoInstance(){
+    public function newGeoInstance()
+    {
         return (new Geo())->clearResult();
     }
 }
