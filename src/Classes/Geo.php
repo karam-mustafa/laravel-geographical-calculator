@@ -44,7 +44,7 @@ class Geo extends AbstractGeo implements GeoInterface
      *
      * @inheritDoc
      */
-    public function allFeature($callback = null)
+    public function allFeatures($callback = null)
     {
         // Implement each available feature and store this feature to storage,
         // then clear the result to implement another feature until we finish all the features.

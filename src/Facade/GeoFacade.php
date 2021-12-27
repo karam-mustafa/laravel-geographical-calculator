@@ -13,7 +13,7 @@ use KMLaravel\GeographicalCalculator\Classes\Geo;
  * @method Geo clearResult()
  * @method Geo getDistance($callback)
  * @method Geo getCenter($callback)
- * @method Geo allFeature($callback)
+ * @method Geo allFeatures($callback)
  * @method Geo getClosest()
  * @method Geo getOrderByNearestNeighbor()
  */

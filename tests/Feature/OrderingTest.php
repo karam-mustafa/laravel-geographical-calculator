@@ -46,6 +46,41 @@ class OrderingTest extends OrchestraTestCase
     }
 
     /**
+     *
+     * @return void
+     * @throws \Exception
+     *
+     */
+    public function test_order_by_nearest_neighbor_algorithm()
+    {
+        $result = $this->newGeoInstance()
+            ->setMainPoint([40.9171863, 14.1632638])
+            ->setPoint([40.92945, 14.44301])
+            ->setPoint([40.92918, 14.44339])
+            ->getOrderByNearestNeighbor();
+        // this data already ordered.
+        // so we depend on the returned keys to test the results.
+        $this->assertEquals([
+            [0,1,2]
+        ], [collect($result)->keys()->toArray()]);
+
+        // now we will re implement the same points
+        // We will arrange the points in a slightly different order
+        // and the order of the points should remain in the correct order
+
+        $result = $this->newGeoInstance()
+            ->setMainPoint([40.9171863, 14.1632638])
+            ->setPoint([40.92918, 14.44339])
+            ->setPoint([40.92945, 14.44301])
+            ->getOrderByNearestNeighbor();
+
+        $this->assertEquals([
+            [0,2,1]
+        ], [collect($result)->keys()->toArray()]);
+
+    }
+
+    /**
      * get clean instance of geo class.
      *
      * @return Geo|GeoInterface
