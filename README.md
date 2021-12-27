@@ -29,7 +29,7 @@ Features
 - [Get the center between set of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/areas.md#get-the-center-for-a-given-coordinates)
 - [Get the closest point to the specific point](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/ordering.md#get-closest-point)
 - [Get a ranking of points by the nearest neighbor algorithm](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/ordering.md#get-ordering-points-by-nearest-neighbor-algorithm)
-- [Get all package features](github.com/karam-mustafa/laraشvel-geographical-calculator/blob/v2.1.0/docs/all.md#all-features-in-one-functiond)
+- [Get all package features](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/all.md#all-features-in-one-function)
 
 
 config options
