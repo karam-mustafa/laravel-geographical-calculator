@@ -12,6 +12,7 @@
 * Added Loops trait helper.
 * Added the closest point from a set of points to a custom point.
 * Added nearest neighbor algorithm.
+* Improved tests and code style
 
 v2.0.1
 --------
