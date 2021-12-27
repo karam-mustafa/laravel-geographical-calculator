@@ -6,6 +6,7 @@ trait GeoTraitContainer
 {
     use DataStorage;
     use PointsStorage;
+    use AngleStorage;
     use Formatter;
     use Debugger;
     use Looper;

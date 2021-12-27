@@ -2,7 +2,6 @@
 
 namespace KMLaravel\GeographicalCalculator\Classes;
 
-use Illuminate\Support\Collection;
 use KMLaravel\GeographicalCalculator\Abstracts\AbstractGeo;
 use KMLaravel\GeographicalCalculator\Interfaces\GeoInterface;
 use KMLaravel\GeographicalCalculator\Traits\Areas;
@@ -32,9 +31,10 @@ class Geo extends AbstractGeo implements GeoInterface
         // so we check if there is any property called result,
         // we will empty these results.
         if (property_exists(__CLASS__, 'result')) {
-            $this->clearStoredResults();
-            $this->clearPoints();
             $this->clearStorage();
+            $this->clearPoints();
+            $this->clearStoredResults();
+            $this->clearAngles();
         }
 
         return $this;
@@ -46,7 +46,8 @@ class Geo extends AbstractGeo implements GeoInterface
      */
     public function allFeature($callback = null)
     {
-
+        // Implement each available feature and store this feature to storage,
+        // then clear the result to implement another feature until we finish all the features.
         $this->setInStorage('distanceResult' , $this->getDistance())
             ->clearStoredResults()
             ->setInStorage('centerResult' , $this->getCenter())

@@ -7,36 +7,7 @@ use Illuminate\Support\Collection;
 
 trait Distances
 {
-    /**
-     * @author karam mustafa
-     *
-     * @var array
-     */
-    private $longs = [];
 
-    /**
-     * @author karam mustafa
-     *
-     * @var array
-     */
-    private $pointsAppendedBefore = [];
-
-    /**
-     * sin value.
-     *
-     * @author karam mustafa
-     *
-     * @var float|int
-     */
-    private $sin;
-    /**
-     * cos value.
-     *
-     * @author karam mustafa
-     *
-     * @var float|int
-     */
-    private $cos;
     /**
      * available units.
      *
@@ -79,78 +50,6 @@ trait Distances
     }
 
     /**
-     * @return float|int
-     *
-     * @author karam mustaf
-     */
-    public function getSin()
-    {
-        return $this->sin;
-    }
-
-    /**
-     * @param  float|int  $sin
-     *
-     * @return Distances
-     *
-     * @author karam mustaf
-     */
-    public function setSin($sin)
-    {
-        $this->sin = $sin;
-
-        return $this;
-    }
-
-    /**
-     * @return float|int
-     *
-     * @author karam mustaf
-     */
-    public function getCos()
-    {
-        return $this->cos;
-    }
-
-    /**
-     * @return mixed
-     *
-     * @author karam mustaf
-     */
-    public function getLongs()
-    {
-        return $this->longs;
-    }
-
-    /**
-     * @param $val
-     *
-     * @return Distances
-     *
-     * @author karam mustaf
-     */
-    public function setLongitude($val)
-    {
-        $this->longs[] = $val;
-
-        return $this;
-    }
-
-    /**
-     * @param  float|int  $cos
-     *
-     * @return Distances
-     *
-     * @author karam mustaf
-     */
-    public function setCos($cos)
-    {
-        $this->cos = $cos;
-
-        return $this;
-    }
-
-    /**
      * instance constructor.
      *
      * @author karam mustafa
@@ -167,8 +66,6 @@ trait Distances
      *
      * @return array|\Illuminate\Support\Collection
      *
-     * @throws \Exception
-     * @author karam mustafa
      * @author karam mustafa
      */
     public function getDistance($callback = null)
@@ -293,9 +190,9 @@ trait Distances
         }
 
         // remove un required results and get the results from storage.
-        return $this
-            ->removeFromStorage('position', 'distance_key', 'distance', 'rad2deg', 'correctDistanceValue')
-            ->getFromStorage();
+        $this->removeFromStorage('position', 'distance_key', 'distance', 'rad2deg', 'correctDistanceValue');
+
+        return $this->getFromStorage();
     }
 
     /**
@@ -323,7 +220,7 @@ trait Distances
      */
     private function checkIfUnitExists($unit)
     {
-        if (! isset($this->getUnits()[$unit])) {
+        if (!isset($this->getUnits()[$unit])) {
             throw new Exception("the unit ['$unit'] dose not available in units config");
         }
 

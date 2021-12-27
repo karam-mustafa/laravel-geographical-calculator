@@ -5,6 +5,13 @@ namespace KMLaravel\GeographicalCalculator\Traits;
 trait Ordering
 {
     /**
+     * @author karam mustafa
+     *
+     * @var array
+     */
+    private $pointsAppendedBefore = [];
+
+    /**
      * get the closest point to the main point.
      *
      * @param  null|callable  $callback
@@ -93,7 +100,7 @@ trait Ordering
 
         // The point closest to the last point in the array of variable res,
         // among the other set of points
-        $pointNameToPush = '';
+        $pointKeyToPush = '';
 
         // get the last point.
         $lastPoint = $res[array_key_last($res)];
@@ -127,23 +134,24 @@ trait Ordering
             if ($distanceCalc < $distance) {
                 $distance = $distanceCalc;
 
-                $pointNameToPush = $points[$pointKey][$key];
+                $pointKeyToPush = $points[$pointKey][$key];
             }
         }
+
         // if we have only one point,
         // then we push this point.
         if (sizeof($points) == 1) {
-            $pointNameToPush = collect($points)->first()[$key];
+            $pointKeyToPush = collect($points)->first()[$key];
         }
 
         // Now we append this point to the result array.
-        $res[$pointNameToPush] = $points[collect($points)->where($key, $pointNameToPush)->keys()[0]];
+        $res[$pointKeyToPush] = $points[collect($points)->where($key, $pointKeyToPush)->keys()[0]];
 
         // and mark this point as a visited point
-        array_push($this->pointsAppendedBefore, $pointNameToPush);
+        array_push($this->pointsAppendedBefore, $pointKeyToPush);
 
         // assign the calculated distance to it.
-        // $res[$pointNameToPush]['distance'] = $distance;
+        // $res[$pointKeyToPush]['distance'] = $distance;
 
         // Get the new points array without the visited points.
         $points = collect($points)->whereNotIn($key, $this->pointsAppendedBefore);
@@ -154,6 +162,7 @@ trait Ordering
 
     /**
      * this function will go through each point, and add the key to it.
+     *
      * @return  void
      * @author karam mustafa
      */
@@ -161,7 +170,7 @@ trait Ordering
     {
         foreach ($this->getPoints() as $index => $point) {
             $this->updatePoint($index, function ($p) use ($index) {
-                return [$p[0], $p[1], 'key' => $index + 1,];
+                return [$p[0], $p[1], 'key' => $index + 1];
             });
         }
     }
