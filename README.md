@@ -2,9 +2,9 @@
 
 
 ## Geographical Calculator
-[![License](https://poser.pugx.org/kmlaravel/apis-generator/license)](//packagist.org/packages/kmlaravel/apis-generator)
-[![Build Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/build-status/master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![License](https://poser.pugx.org/kmlaravel/apis-generator/license)](//packagist.org/packages/kmlaravel/laravel-geographical-calculator)
+[![PHP Composer](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php.yml/badge.svg)](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php.yml)
+[![Check & fix styling](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php-cs-fixer.yml)
 [![Code Quality](https://api.codiga.io/project/30429/score/svg)](https://api.codiga.io/project/30429/score/svg)
 
 Geographical Calculator was developed for laravel 5.8+ to help you to implement geographical calculation, 
