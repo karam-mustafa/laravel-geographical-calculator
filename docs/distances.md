@@ -60,25 +60,6 @@ All points at once:
 
      return $allPoints;
 ```
-
-Closest Point
----------------
-```php
-     $closest  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setMainPoint([22, 37])
-            ->setPoints([
-                [22, 37],
-                [33, 40],
-                // .... other points
-            ])
-            // and of course, you still can use getPoint again if you want.
-            ->setPoint([33, 40])
-            // you can use callback, the callback is return Collection instance of result.
-            ->getClosest();
-
-     //  the result will be array of [pointIndex => [lat , long]] that you inserted before.
-     return $closest;
-```
-
 Callback functions
 ---------------
 ```php
@@ -99,4 +80,22 @@ Callback functions
             // the result should be array contains lat value and long value
 
      return $allPoints;
+```
+Use Multiple execution
+---------------
+This package use the registry pattern and storage state to save all results,
+so if you want to use the geo class instance multiple time you should clear the previous results,
+and you can do that by calling `clearResult()` function.
+```php
+     $exec1  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoints([
+                [22, 37],
+                [33, 40],
+            ])
+            ->getDistance();
+    $exec2  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::clearResult()->setPoints([
+                [22, 37],
+                [33, 40],
+            ])
+            ->getDistance();
+    dd($exec1,$exec2);
 ```

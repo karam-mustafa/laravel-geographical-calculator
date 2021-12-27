@@ -50,4 +50,27 @@ Callback functions
 
      return $center;
 ```
+Use Multiple execution
+---------------
+This package use the registry pattern and storage state to save all results,
+so if you want to use the geo class instance multiple time you should clear the previous results,
+and you can do that by calling `clearResult()` function.
+```php
+     $exec1  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoints([
+                [22, 37],
+                [33, 40],
+            ])
+            ->getCenter(function(\Illuminate\Support\Collection $result){
+                return $result->first();
+            });
+    $exec2  = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::clearResult()->setPoints([
+                [22, 37],
+                [33, 40],
+            ])
+            ->getCenter(function(\Illuminate\Support\Collection $result){
+                return $result->first();
+            });
+    dd($exec1,$exec2);
+```
+
 

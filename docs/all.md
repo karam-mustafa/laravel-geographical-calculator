@@ -1,5 +1,6 @@
 All features in one function:
 ----------
+For now, only center and distance supported in this function.
 ```php
     // Define your points
     $allFeature =  \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setPoint([22, 37])
@@ -10,8 +11,8 @@ All features in one function:
             // ->setPoint([lat, long])
             // ->setPoint([lat, long])
             ->setPoint([33, 40])
-            ->allFeature();
-    // the result will be array contains ['distance' => '...' , 'center' => '...', 'closest' => '...]
+            ->allFeatures();
+    // the result will be array contains ['distance' => '...' , 'center' => '...']
     // each output was described in docs files.
     return $allFeature;
 ```
