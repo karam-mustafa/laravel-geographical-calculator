@@ -48,14 +48,14 @@ class Geo extends AbstractGeo implements GeoInterface
     {
         // Implement each available feature and store this feature to storage,
         // then clear the result to implement another feature until we finish all the features.
-        $this->setInStorage('distanceResult' , $this->getDistance())
+        $this->setInStorage('distanceResult', $this->getDistance())
             ->clearStoredResults()
-            ->setInStorage('centerResult' , $this->getCenter())
+            ->setInStorage('centerResult', $this->getCenter())
             ->clearStoredResults();
 
         $this->setResult([
-            "distance"  => $this->getFromStorage('distanceResult'),
-            "center"  => $this->getFromStorage('centerResult'),
+            "distance" => $this->getFromStorage('distanceResult'),
+            "center" => $this->getFromStorage('centerResult'),
         ]);
 
         return $this->getResult();

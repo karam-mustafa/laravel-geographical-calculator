@@ -26,7 +26,7 @@ class OrderingTest extends OrchestraTestCase
             // the key is the index of points insertion.
             1 => [
                 40.92918,
-                14.44339
+                14.44339,
             ],
         ], $result);
 
@@ -39,10 +39,9 @@ class OrderingTest extends OrchestraTestCase
         $this->assertEquals([
             0 => [
                 40.92918,
-                14.44339
+                14.44339,
             ],
         ], $result);
-
     }
 
     /**
@@ -61,7 +60,7 @@ class OrderingTest extends OrchestraTestCase
         // this data already ordered.
         // so we depend on the returned keys to test the results.
         $this->assertEquals([
-            [0,1,2]
+            [0,1,2],
         ], [collect($result)->keys()->toArray()]);
 
         // now we will re implement the same points
@@ -75,9 +74,8 @@ class OrderingTest extends OrchestraTestCase
             ->getOrderByNearestNeighbor();
 
         $this->assertEquals([
-            [0,2,1]
+            [0,2,1],
         ], [collect($result)->keys()->toArray()]);
-
     }
 
     /**
@@ -86,7 +84,8 @@ class OrderingTest extends OrchestraTestCase
      * @return Geo|GeoInterface
      * @author karam mustafa
      */
-    public function newGeoInstance(){
+    public function newGeoInstance()
+    {
         return (new Geo())->clearResult();
     }
 }
