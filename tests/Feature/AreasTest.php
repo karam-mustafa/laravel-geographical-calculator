@@ -3,6 +3,7 @@
 namespace KMLaravel\GeographicalCalculator\Tests\Feature;
 
 use KMLaravel\GeographicalCalculator\Classes\Geo;
+use KMLaravel\GeographicalCalculator\Interfaces\GeoInterface;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class AreasTest extends OrchestraTestCase
@@ -16,7 +17,7 @@ class AreasTest extends OrchestraTestCase
      */
     public function test_center()
     {
-        $result = (new Geo())->setPoint([22, 37])
+        $result = $this->newGeoInstance()->setPoint([22, 37])
             ->setPoint([33, 40])
             ->getCenter();
 
@@ -24,5 +25,16 @@ class AreasTest extends OrchestraTestCase
             'lat' => 27.508023496931,
             'long' => 38.424795502212,
         ], $result);
+    }
+
+
+    /**
+     * get clean instance of geo class.
+     *
+     * @return Geo|GeoInterface
+     * @author karam mustafa
+     */
+    public function newGeoInstance(){
+        return (new Geo())->clearResult();
     }
 }

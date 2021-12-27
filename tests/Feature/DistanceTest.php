@@ -3,6 +3,7 @@
 namespace KMLaravel\GeographicalCalculator\Tests\Feature;
 
 use KMLaravel\GeographicalCalculator\Classes\Geo;
+use KMLaravel\GeographicalCalculator\Interfaces\GeoInterface;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class DistanceTest extends OrchestraTestCase
@@ -14,9 +15,9 @@ class DistanceTest extends OrchestraTestCase
      * @throws \Exception
      *
      */
-    public function test_distance()
+    public function test_distance_is_correct()
     {
-        $result = (new Geo())->setPoint([22, 37])
+        $result = $this->newGeoInstance()->setPoint([22, 37])
             ->setOptions(['units' => ['km']])
             ->setPoint([33, 40])
             ->getDistance();
@@ -24,5 +25,15 @@ class DistanceTest extends OrchestraTestCase
         $this->assertEquals([
             '1-2' => ['km' => 1258.1691302282],
         ], $result);
+    }
+
+    /**
+     * get clean instance of geo class.
+     *
+     * @return Geo|GeoInterface
+     * @author karam mustafa
+     */
+    public function newGeoInstance(){
+        return (new Geo())->clearResult();
     }
 }
