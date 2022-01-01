@@ -2,9 +2,10 @@
 
 
 ## Geographical Calculator
-[![License](https://poser.pugx.org/kmlaravel/apis-generator/license)](//packagist.org/packages/kmlaravel/apis-generator)
-[![Build Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/build-status/master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/kmlaravel/apis-generator/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![License](https://poser.pugx.org/kmlaravel/apis-generator/license)](//packagist.org/packages/kmlaravel/laravel-geographical-calculator)
+[![PHP Composer](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php.yml/badge.svg)](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php.yml)
+[![Check & fix styling](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/php-cs-fixer.yml)
+[![Run tests](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/tests.yml/badge.svg)](https://github.com/karam-mustafa/laravel-geographical-calculator/actions/workflows/tests.yml)
 [![Code Quality](https://api.codiga.io/project/30429/score/svg)](https://api.codiga.io/project/30429/score/svg)
 
 Geographical Calculator was developed for laravel 5.8+ to help you to implement geographical calculation, 
@@ -25,11 +26,11 @@ php artisan geo:install
 
 Features
 -----------
-- [Get the distance between one or more of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/distances.md#basic-usage)
-- [Get the center between set of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/areas.md#get-the-center-for-a-given-coordinates)
-- [Get the closest point to the specific point](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/ordering.md#get-closest-point)
-- [Get a ranking of points by the nearest neighbor algorithm](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/ordering.md#get-ordering-points-by-nearest-neighbor-algorithm)
-- [Get all package features](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/v2.1.0/docs/all.md#all-features-in-one-function)
+- [Get the distance between one or more of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md#basic-usage)
+- [Get the center between set of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/areas.md#get-the-center-for-a-given-coordinates)
+- [Get the closest point to the specific point](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/ordering.md#get-closest-point)
+- [Get a ranking of points by the nearest neighbor algorithm](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/ordering.md#get-ordering-points-by-nearest-neighbor-algorithm)
+- [Get all package features](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/all.md#all-features-in-one-function)
 
 
 config options
