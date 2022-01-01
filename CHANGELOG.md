@@ -1,10 +1,4 @@
-[coming] v2.2.0
---------
-* Improved traits design.
-* Added check if the point is located in a given area.
-* Added Features to eloquent model scope.
-
- v2.1.0
+v2.1.0
 --------
 * Improved getDistance and getCenter function to accept callback.
 * Added all function to get all package features.
