@@ -37,6 +37,7 @@ trait Ordering
 
         return $this->resolveCallbackResult($this->getResultByKey('closest'), $callback);
     }
+
     /**
      * get the farthest point to the main point.
      *
@@ -63,6 +64,7 @@ trait Ordering
 
         return $this->resolveCallbackResult($this->getResultByKey('farthest'), $callback);
     }
+
     /**
      * Add the key to each point, and use the Nearest Neighbor Algorithm to resolve the order of the data.
      *
