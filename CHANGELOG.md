@@ -1,3 +1,7 @@
+## v2.1.1 - 2022-01-22
+
+- Fix code style and composer dependencies
+
 ## v2.1.0 - 2021-12-27
 
 - Improved getDistance and getCenter function to accept callback.
