@@ -5,7 +5,7 @@ namespace KMLaravel\GeographicalCalculator\Interfaces;
 interface GeoInterface
 {
     /**
-     * @param  array  $point
+     * @param array $point
      *
      * @author karam mustafa
      */
@@ -26,9 +26,10 @@ interface GeoInterface
     public function getCenter();
 
     /**
-     * clear all stored results
+     * clear all stored results.
      *
-     * @return  GeoInterface
+     * @return GeoInterface
+     *
      * @author karam mustafa
      */
     public function clearResult();
@@ -36,7 +37,8 @@ interface GeoInterface
     /**
      * get all package features.
      *
-     * @return  array
+     * @return array
+     *
      * @author karam mustafa
      */
     public function allFeatures();

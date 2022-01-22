@@ -23,7 +23,7 @@ trait PointsStorage
     public $mainPoint = [];
 
     /**
-     * @param  null  $index
+     * @param null $index
      *
      * @return array
      *
@@ -51,8 +51,8 @@ trait PointsStorage
     }
 
     /**
-     * @param  int  $indexAt
-     * @param  null|callable  $callback
+     * @param int           $indexAt
+     * @param null|callable $callback
      *
      * @return PointsStorage
      *
@@ -90,7 +90,7 @@ trait PointsStorage
     }
 
     /**
-     * @param  array  $points
+     * @param array $points
      *
      * @return PointsStorage
      *
@@ -104,7 +104,7 @@ trait PointsStorage
     }
 
     /**
-     * @param  array  $points
+     * @param array $points
      *
      * @return PointsStorage
      *

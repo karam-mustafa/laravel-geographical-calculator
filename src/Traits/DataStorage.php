@@ -37,7 +37,7 @@ trait DataStorage
     private $options = [];
 
     /**
-     * @param  mixed  $key
+     * @param mixed $key
      *
      * @return array
      *
@@ -51,7 +51,7 @@ trait DataStorage
     }
 
     /**
-     * @param  array  $options
+     * @param array $options
      *
      * @return DataStorage
      *
@@ -65,7 +65,7 @@ trait DataStorage
     }
 
     /**
-     * @param  null|callable  $callback
+     * @param null|callable $callback
      *
      * @return mixed
      *
@@ -79,7 +79,7 @@ trait DataStorage
     }
 
     /**
-     * @param  null|string  $key
+     * @param null|string $key
      *
      * @return mixed
      *
@@ -93,7 +93,7 @@ trait DataStorage
     }
 
     /**
-     * @param  mixed  $result
+     * @param mixed $result
      *
      * @return DataStorage
      *
@@ -107,8 +107,8 @@ trait DataStorage
     }
 
     /**
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
      *
      * @return DataStorage
      *
@@ -138,7 +138,7 @@ trait DataStorage
     }
 
     /**
-     * @param  string  $key
+     * @param string $key
      *
      * @return mixed
      *
@@ -156,7 +156,7 @@ trait DataStorage
     }
 
     /**
-     * @param  string  $key
+     * @param string $key
      *
      * @return mixed
      *
@@ -171,9 +171,10 @@ trait DataStorage
      * if the key int getFromStorage is array, then we get each key from the storage
      * this mean the user want a specific keys from storage.
      *
-     * @param  array  $keys
+     * @param array $keys
      *
      * @return array
+     *
      * @author karam mustafa
      */
     public function getCustomKeysFromStorage($keys)
@@ -188,8 +189,8 @@ trait DataStorage
     }
 
     /**
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
      *
      * @return DataStorage
      *
@@ -215,7 +216,7 @@ trait DataStorage
     }
 
     /**
-     * @param  mixed  $keys
+     * @param mixed $keys
      *
      * @return DataStorage
      *
@@ -236,10 +237,11 @@ trait DataStorage
      * check if there is a callback, then inject the result in it.
      * else basically return the result.
      *
-     * @param  mixed  $result
-     * @param  null|callable  $callback
+     * @param mixed         $result
+     * @param null|callable $callback
      *
      * @return mixed
+     *
      * @author karam mustafa
      */
     private function resolveCallbackResult($result, $callback)

@@ -14,9 +14,10 @@ trait Ordering
     /**
      * get the closest point to the main point.
      *
-     * @param  null|callable  $callback
+     * @param null|callable $callback
      *
      * @return mixed
+     *
      * @author karam mustafa
      */
     public function getClosest($callback = null)
@@ -30,7 +31,7 @@ trait Ordering
         );
 
         $this->setResult([
-            "closest" => [
+            'closest' => [
                 $this->getFromStorage('closestPointIndex') => $this->getFromStorage('points')[$this->getFromStorage('closestPointIndex')],
             ],
         ]);
@@ -42,6 +43,7 @@ trait Ordering
      * Add the key to each point, and use the Nearest Neighbor Algorithm to resolve the order of the data.
      *
      * @return mixed
+     *
      * @author karam mustafa
      */
     public function getOrderByNearestNeighbor()
@@ -61,11 +63,12 @@ trait Ordering
      * get the closest point to the main point.
      *
      * @param $points
-     * @param  array  $result
-     * @param  int  $sizeOfPoints
-     * @param  string  $key
+     * @param array  $result
+     * @param int    $sizeOfPoints
+     * @param string $key
      *
      * @return mixed
+     *
      * @author karam mustafa
      */
     public function nearestNeighborAlgorithm($points, $result = [], $sizeOfPoints = 0, $key = 'key')
@@ -163,7 +166,8 @@ trait Ordering
     /**
      * this function will go through each point, and add the key to it.
      *
-     * @return  void
+     * @return void
+     *
      * @author karam mustafa
      */
     private function resolveKeyForEachPoint()
