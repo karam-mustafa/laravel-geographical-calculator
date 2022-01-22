@@ -116,7 +116,7 @@ trait DataStorage
      */
     public function appendToStorage($key, $value)
     {
-        if (!isset($this->localStorage[$key])) {
+        if (! isset($this->localStorage[$key])) {
             $this->localStorage[$key] = [];
         }
 
