@@ -53,7 +53,7 @@ class Geo extends AbstractGeo implements GeoInterface
 
         $this->setResult([
             'distance' => $this->getFromStorage('distanceResult'),
-            'center'   => $this->getFromStorage('centerResult'),
+            'center' => $this->getFromStorage('centerResult'),
         ]);
 
         return $this->getResult();
