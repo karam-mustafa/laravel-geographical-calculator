@@ -22,7 +22,7 @@ class AreasTest extends OrchestraTestCase
             ->getCenter();
 
         $this->assertEquals([
-            'lat' => 27.508023496931,
+            'lat'  => 27.508023496931,
             'long' => 38.424795502212,
         ], $result);
     }
@@ -31,6 +31,7 @@ class AreasTest extends OrchestraTestCase
      * get clean instance of geo class.
      *
      * @return Geo|GeoInterface
+     *
      * @author karam mustafa
      */
     public function newGeoInstance()

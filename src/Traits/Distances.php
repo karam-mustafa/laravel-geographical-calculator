@@ -16,10 +16,10 @@ trait Distances
      */
     private $units = [
         'mile' => 1,
-        'km' => 1.609344,
-        'm' => (1.609344 * 1000),
-        'cm' => (1.609344 * 100),
-        'mm' => (1.609344 * 1000 * 1000),
+        'km'   => 1.609344,
+        'm'    => (1.609344 * 1000),
+        'cm'   => (1.609344 * 100),
+        'mm'   => (1.609344 * 1000 * 1000),
     ];
 
     /**
@@ -35,7 +35,7 @@ trait Distances
     }
 
     /**
-     * @param  array  $units
+     * @param array $units
      *
      * @return Distances
      *
@@ -61,7 +61,7 @@ trait Distances
     /**
      * Finding the distance of points using several given coordinate points.
      *
-     * @param  null|callable  $callback
+     * @param null|callable $callback
      *
      * @return array|\Illuminate\Support\Collection
      *
@@ -97,9 +97,9 @@ trait Distances
     /**
      * get the sin or cos values multiply.
      *
-     * @param  int  $firstLat
-     * @param  int  $secondLat
-     * @param  string  $angle
+     * @param int    $firstLat
+     * @param int    $secondLat
+     * @param string $angle
      *
      * @return float
      *
@@ -127,9 +127,9 @@ trait Distances
     /**
      * calculation distance process.
      *
-     * @return array
-     *
      * @throws Exception
+     *
+     * @return array
      *
      * @author karam mustafa
      */
@@ -164,11 +164,11 @@ trait Distances
     /**
      * check if user chose any units.
      *
-     * @param  float  $distance
-     *
-     * @return array
+     * @param float $distance
      *
      * @throws Exception
+     *
+     * @return array
      *
      * @author karam mustafa
      */
@@ -209,17 +209,17 @@ trait Distances
     /**
      * check if current units its available in units property or config file.
      *
-     * @param  string  $unit
-     *
-     * @return Distances
+     * @param string $unit
      *
      * @throws \Exception
+     *
+     * @return Distances
      *
      * @author karam mustafa
      */
     private function checkIfUnitExists($unit)
     {
-        if (! isset($this->getUnits()[$unit])) {
+        if (!isset($this->getUnits()[$unit])) {
             throw new Exception("the unit ['$unit'] dose not available in units config");
         }
 
@@ -263,6 +263,7 @@ trait Distances
      * get only result that related with units.
      *
      * @return mixed
+     *
      * @author karam mustafa
      */
     public function cleanDistanceResult()

@@ -7,7 +7,7 @@ trait Areas
     /**
      * get the center from a given data.
      *
-     * @param  null|callable  $callback
+     * @param null|callable $callback
      *
      * @return array|bool|\Illuminate\Support\Collection
      *
@@ -20,7 +20,7 @@ trait Areas
         $this->setInStorage('pointsCount', count($this->getPoints()));
 
         // check if there are points or not.
-        if (! $this->getFromStorage('pointsCount')) {
+        if (!$this->getFromStorage('pointsCount')) {
             return false;
         }
 
@@ -61,7 +61,7 @@ trait Areas
             // so we can access this result from any next execution,
             // if we have multi process or tasks in future.
             ->setResult([
-                'lat' => $this->getFromStorage('lat') * 180 / pi(),
+                'lat'  => $this->getFromStorage('lat') * 180 / pi(),
                 'long' => $this->getFromStorage('long') * 180 / pi(),
             ]);
 
