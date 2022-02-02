@@ -6,7 +6,7 @@
         </include>
     </coverage>
     <testsuites>
-        <testsuite name="Spatie Test Suite">
+        <testsuite name="Geo Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
