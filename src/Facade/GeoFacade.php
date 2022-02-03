@@ -15,6 +15,7 @@ use KMLaravel\GeographicalCalculator\Classes\Geo;
  * @method Geo getCenter($callback)
  * @method Geo allFeatures($callback)
  * @method Geo getClosest()
+ * @method Geo getFarthest()
  * @method Geo getOrderByNearestNeighbor()
  */
 class GeoFacade extends Facade
