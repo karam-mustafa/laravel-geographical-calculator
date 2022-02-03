@@ -34,5 +34,4 @@ trait DiametersStorage
 
         return $this;
     }
-
 }
