@@ -5,16 +5,16 @@ namespace KMLaravel\GeographicalCalculator\Traits;
 trait DiametersStorage
 {
     /**
-     *
+     * diameter in meter.
      *
      * @author karam mustafa
      *
-     * @var array
+     * @var int
      */
-    public $diameter = [];
+    public $diameter = 0;
 
     /**
-     * @return array
+     * @return int
      * @author karam mustafa
      */
     public function getDiameter()
@@ -23,12 +23,14 @@ trait DiametersStorage
     }
 
     /**
-     * @param  array  $diameter
+     * diameter in kilo meter
+     *
+     * @param  int  $diameter
      *
      * @return DiametersStorage
      * @author karam mustafa
      */
-    public function setDiameter($diameter)
+    public function setDiameter($diameter = 0)
     {
         $this->diameter = $diameter;
 

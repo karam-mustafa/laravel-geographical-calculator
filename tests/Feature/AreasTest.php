@@ -26,7 +26,33 @@ class AreasTest extends OrchestraTestCase
             'long' => 38.424795502212,
         ], $result);
     }
+    
+    /**
+     * test if the given point is in custom area, depending on main point and diameter
+     *
+     * @throws \Exception
+     *
+     * @return void
+     */
+    public function test_if_given_point_is_in_custom_area()
+    {
 
+        // the result must be true
+        $result = $this->newGeoInstance()->setMainPoint([22, 37])
+            ->setDiameter(1000)
+            ->setPoint([33, 40])
+            ->isInArea();
+
+        $this->assertTrue($result);
+
+        // the result must be false
+        $result = $this->newGeoInstance()->setMainPoint([22, 37])
+            ->setDiameter(2000)
+            ->setPoint([33, 40])
+            ->isInArea();
+
+        $this->assertFalse($result);
+    }
     /**
      * get clean instance of geo class.
      *
