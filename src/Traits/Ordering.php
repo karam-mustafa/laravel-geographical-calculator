@@ -40,6 +40,33 @@ trait Ordering
     }
 
     /**
+     * get the farthest point to the main point.
+     *
+     * @param  null|callable  $callback
+     *
+     * @return mixed
+     * @author karam mustafa
+     */
+    public function getFarthest($callback = null)
+    {
+        $this->resolveEachDistanceToMainPoint();
+
+        // set the closest point index after we sort the distances result.
+        $this->setInStorage(
+            'farthestPointIndex',
+            collect($this->getFromStorage('distancesEachPointToMainPoint'))->sortDesc()->keys()->first()
+        );
+
+        $this->setResult([
+            "farthest" => [
+                $this->getFromStorage('farthestPointIndex') => $this->getFromStorage('points')[$this->getFromStorage('farthestPointIndex')],
+            ],
+        ]);
+
+        return $this->resolveCallbackResult($this->getResultByKey('farthest'), $callback);
+    }
+
+    /**
      * Add the key to each point, and use the Nearest Neighbor Algorithm to resolve the order of the data.
      *
      * @return mixed

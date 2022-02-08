@@ -48,6 +48,41 @@ class OrderingTest extends OrchestraTestCase
      *
      * @return void
      */
+    public function test_farthest_point_of_set_points()
+    {
+        $result = $this->newGeoInstance()
+            ->setMainPoint([40.9171863, 14.1632638])
+            ->setPoint([40.92945, 14.44301])
+            ->setPoint([40.92918, 14.44339])
+            ->getFarthest();
+
+        $this->assertEquals([
+            // the key is the index of points insertion.
+            0 => [
+                40.92945,
+                14.44301,
+            ],
+        ], $result);
+
+        $result = $this->newGeoInstance()
+            ->setMainPoint([40.9171863, 14.1632638])
+            ->setPoint([40.92918, 14.44339])
+            ->setPoint([40.92945, 14.44301])
+            ->getFarthest();
+        // now the closest point index should be 1
+        $this->assertEquals([
+            1 => [
+                40.92945,
+                14.44301,
+            ],
+        ], $result);
+    }
+
+    /**
+     * @throws \Exception
+     *
+     * @return void
+     */
     public function test_order_by_nearest_neighbor_algorithm()
     {
         $result = $this->newGeoInstance()

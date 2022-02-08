@@ -2,6 +2,8 @@
 
 namespace KMLaravel\GeographicalCalculator\Traits;
 
+use Illuminate\Support\Collection;
+
 trait Areas
 {
     /**
@@ -36,19 +38,19 @@ trait Areas
                 'x',
                 (
                     $this->getFromStorage('x') +
-                cos($this->getFromStorage('lat')) * cos($this->getFromStorage('long'))
+                    cos($this->getFromStorage('lat')) * cos($this->getFromStorage('long'))
                 )
             )->setInStorage(
                 'y',
                 (
                     $this->getFromStorage('y') +
-                cos($this->getFromStorage('lat')) * sin($this->getFromStorage('long'))
+                    cos($this->getFromStorage('lat')) * sin($this->getFromStorage('long'))
                 )
             )->setInStorage(
                 'z',
                 (
                     $this->getFromStorage('z') +
-                sin($this->getFromStorage('lat'))
+                    sin($this->getFromStorage('lat'))
                 )
             );
         });
@@ -68,6 +70,40 @@ trait Areas
         return isset($callback)
             ? collect($callback($this->getResult()))
             : $this->getResult();
+    }
+
+    /**
+     * check if the point is in area that created depending on the main point and the diameter.
+     *
+     * @return true
+     *
+     * @author karam mustafa
+     */
+    public function isInArea()
+    {
+        // store the points in different
+        $this->setInStorage('mainPointToCheck', $this->getMainPoint());
+        $this->setInStorage('pointToCalculateArea', $this->getPoints()[0]);
+        // clear the points and reset them
+        $this->clearPoints();
+        $this->setPoints([$this->getFromStorage('mainPointToCheck'), $this->getFromStorage('pointToCalculateArea')]);
+
+        // now this is the hard part, we must calculate the distance
+        // between the main point and the point that you want to check it.
+
+        // if the distance between these points is bigger than the given diameter
+        // then this mean the point is not within the area
+
+        // otherwise mean that the distance between the given point is locate in the circle that calculated
+        // from the main point and the diameter
+        $this->setInStorage(
+            'distanceToCompare',
+            $this->setOptions(['units' => ['km']])->getDistance(function (Collection $item) {
+                return $item->first()['km'];
+            })
+        );
+
+        return $this->getFromStorage('distanceToCompare') > $this->getDiameter();
     }
 
     /**

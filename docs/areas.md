@@ -30,6 +30,19 @@ All points at once
 
      return $center;
 ```
+Check if a given point located in a given area
+---------------
+```php
+
+    $isInArea = \KMLaravel\GeographicalCalculator\Facade\GeoFacade::setMainPoint([22, 37])
+            // diameter in kilo meter
+             ->setDiameter(1000)
+            // point to check, do not insert more than one point here.
+             ->setPoint([33, 40])
+             ->isInArea();
+             // the result is true or false
+         return $result;
+```
 Callback functions
 ---------------
 ```php
