@@ -35,7 +35,7 @@ class AllFeaturesTest extends OrchestraTestCase
 
         $this->assertEquals([
             'distance' => $distance,
-            'center' => $center,
+            'center'   => $center,
         ], $all);
     }
 
