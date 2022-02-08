@@ -57,6 +57,7 @@ class AreasTest extends OrchestraTestCase
      * get clean instance of geo class.
      *
      * @return Geo|GeoInterface
+     *
      * @author karam mustafa
      */
     public function newGeoInstance()

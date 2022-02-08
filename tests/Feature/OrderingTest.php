@@ -9,10 +9,9 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 class OrderingTest extends OrchestraTestCase
 {
     /**
-     *
-     * @return void
      * @throws \Exception
      *
+     * @return void
      */
     public function test_closest_point_of_set_points()
     {
@@ -80,10 +79,9 @@ class OrderingTest extends OrchestraTestCase
     }
     
     /**
-     *
-     * @return void
      * @throws \Exception
      *
+     * @return void
      */
     public function test_order_by_nearest_neighbor_algorithm()
     {
@@ -95,7 +93,7 @@ class OrderingTest extends OrchestraTestCase
         // this data already ordered.
         // so we depend on the returned keys to test the results.
         $this->assertEquals([
-            [0,1,2],
+            [0, 1, 2],
         ], [collect($result)->keys()->toArray()]);
 
         // now we will re implement the same points
@@ -109,7 +107,7 @@ class OrderingTest extends OrchestraTestCase
             ->getOrderByNearestNeighbor();
 
         $this->assertEquals([
-            [0,2,1],
+            [0, 2, 1],
         ], [collect($result)->keys()->toArray()]);
     }
 
@@ -117,6 +115,7 @@ class OrderingTest extends OrchestraTestCase
      * get clean instance of geo class.
      *
      * @return Geo|GeoInterface
+     *
      * @author karam mustafa
      */
     public function newGeoInstance()

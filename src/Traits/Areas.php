@@ -9,7 +9,7 @@ trait Areas
     /**
      * get the center from a given data.
      *
-     * @param  null|callable  $callback
+     * @param null|callable $callback
      *
      * @return array|bool|\Illuminate\Support\Collection
      *

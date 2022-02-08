@@ -21,7 +21,9 @@ composer require kmlaravel/laravel-geographical-calculator
 ```
 ##### 2 - Copy the package providers to your local config with the publish command, this will publish the config:
 ```shell
+
 php artisan geo:install
+
 ```
 
 Features

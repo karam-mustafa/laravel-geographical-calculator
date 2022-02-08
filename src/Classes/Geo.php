@@ -10,10 +10,9 @@ use KMLaravel\GeographicalCalculator\Traits\GeoTraitContainer;
 use KMLaravel\GeographicalCalculator\Traits\Ordering;
 
 /**
- * Class Geo
+ * Class Geo.
  *
  * @author karam mustafa
- * @package KMLaravel\GeographicalCalculator\Classes
  */
 class Geo extends AbstractGeo implements GeoInterface
 {
@@ -41,7 +40,6 @@ class Geo extends AbstractGeo implements GeoInterface
     }
 
     /**
-     *
      * @inheritDoc
      */
     public function allFeatures($callback = null)
@@ -54,8 +52,8 @@ class Geo extends AbstractGeo implements GeoInterface
             ->clearStoredResults();
 
         $this->setResult([
-            "distance" => $this->getFromStorage('distanceResult'),
-            "center" => $this->getFromStorage('centerResult'),
+            'distance' => $this->getFromStorage('distanceResult'),
+            'center' => $this->getFromStorage('centerResult'),
         ]);
 
         return $this->getResult();

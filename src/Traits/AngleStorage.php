@@ -38,7 +38,7 @@ trait AngleStorage
     }
 
     /**
-     * @param  float|int  $sin
+     * @param float|int $sin
      *
      * @return AngleStorage
      *
@@ -86,7 +86,7 @@ trait AngleStorage
     }
 
     /**
-     * @param  float|int  $cos
+     * @param float|int $cos
      *
      * @return AngleStorage
      *

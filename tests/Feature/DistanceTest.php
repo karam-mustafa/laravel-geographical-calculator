@@ -11,9 +11,9 @@ class DistanceTest extends OrchestraTestCase
     /**
      * test if the distance equal the correct distance by given coordinate.
      *
-     * @return void
      * @throws \Exception
      *
+     * @return void
      */
     public function test_distance_is_correct()
     {
@@ -31,6 +31,7 @@ class DistanceTest extends OrchestraTestCase
      * get clean instance of geo class.
      *
      * @return Geo|GeoInterface
+     *
      * @author karam mustafa
      */
     public function newGeoInstance()
