@@ -28,7 +28,7 @@ class AreasTest extends OrchestraTestCase
     }
 
     /**
-     * test if the given point is in custom area, depending on main point and diameter
+     * test if the given point is in custom area, depending on main point and diameter.
      *
      * @throws \Exception
      *

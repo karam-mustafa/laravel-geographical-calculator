@@ -42,9 +42,10 @@ trait Ordering
     /**
      * get the farthest point to the main point.
      *
-     * @param  null|callable  $callback
+     * @param null|callable $callback
      *
      * @return mixed
+     *
      * @author karam mustafa
      */
     public function getFarthest($callback = null)
@@ -58,7 +59,7 @@ trait Ordering
         );
 
         $this->setResult([
-            "farthest" => [
+            'farthest' => [
                 $this->getFromStorage('farthestPointIndex') => $this->getFromStorage('points')[$this->getFromStorage('farthestPointIndex')],
             ],
         ]);
