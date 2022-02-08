@@ -1,3 +1,8 @@
+## v2.2.0 - 2022-02-08
+
+- Added the farthest point from a set of points to a custom point.
+- Added check if the point is located in a given area.
+
 ## v2.1.1 - 2022-01-22
 
 - Fix code style and composer dependencies
