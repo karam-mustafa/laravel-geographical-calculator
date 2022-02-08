@@ -31,6 +31,8 @@ Features
 - [Get the distance between one or more of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/distances.md#basic-usage)
 - [Get the center between set of points](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/areas.md#get-the-center-for-a-given-coordinates)
 - [Get the closest point to the specific point](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/ordering.md#get-closest-point)
+- [Get the farthest point to the specific point](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/ordering.md#get-farthest-point)
+- [Check if a given point located in a given area](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/areas.md#check-if-a-given-point-located-in-a-given-area)
 - [Get a ranking of points by the nearest neighbor algorithm](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/ordering.md#get-ordering-points-by-nearest-neighbor-algorithm)
 - [Get all package features](https://github.com/karam-mustafa/laravel-geographical-calculator/blob/main/docs/all.md#all-features-in-one-function)
 
