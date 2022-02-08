@@ -16,10 +16,10 @@ trait Distances
      */
     private $units = [
         'mile' => 1,
-        'km' => 1.609344,
-        'm' => (1.609344 * 1000),
-        'cm' => (1.609344 * 100),
-        'mm' => (1.609344 * 1000 * 1000),
+        'km'   => 1.609344,
+        'm'    => (1.609344 * 1000),
+        'cm'   => (1.609344 * 100),
+        'mm'   => (1.609344 * 1000 * 1000),
     ];
 
     /**
@@ -219,7 +219,7 @@ trait Distances
      */
     private function checkIfUnitExists($unit)
     {
-        if (! isset($this->getUnits()[$unit])) {
+        if (!isset($this->getUnits()[$unit])) {
             throw new Exception("the unit ['$unit'] dose not available in units config");
         }
 
