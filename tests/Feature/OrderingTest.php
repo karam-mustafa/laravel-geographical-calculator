@@ -42,6 +42,7 @@ class OrderingTest extends OrchestraTestCase
             ],
         ], $result);
     }
+
     /**
      *
      * @return void
@@ -56,7 +57,7 @@ class OrderingTest extends OrchestraTestCase
             ->setPoint([40.92918, 14.44339])
             ->getFarthest();
 
-            $this->assertEquals([
+        $this->assertEquals([
             // the key is the index of points insertion.
             0 => [
                 40.92945,
@@ -77,7 +78,7 @@ class OrderingTest extends OrchestraTestCase
             ],
         ], $result);
     }
-    
+
     /**
      * @throws \Exception
      *
