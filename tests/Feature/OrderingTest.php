@@ -44,10 +44,9 @@ class OrderingTest extends OrchestraTestCase
     }
 
     /**
-     *
-     * @return void
      * @throws \Exception
      *
+     * @return void
      */
     public function test_farthest_point_of_set_points()
     {
