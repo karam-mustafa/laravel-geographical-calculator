@@ -9,10 +9,9 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 class AllFeaturesTest extends OrchestraTestCase
 {
     /**
-     *
-     * @return void
      * @throws \Exception
      *
+     * @return void
      */
     public function test_get_all_feature()
     {
@@ -35,8 +34,8 @@ class AllFeaturesTest extends OrchestraTestCase
             ->allFeatures();
 
         $this->assertEquals([
-            "distance" => $distance,
-            "center" => $center,
+            'distance' => $distance,
+            'center'   => $center,
         ], $all);
     }
 
@@ -44,6 +43,7 @@ class AllFeaturesTest extends OrchestraTestCase
      * get clean instance of geo class.
      *
      * @return Geo|GeoInterface
+     *
      * @author karam mustafa
      */
     public function newGeoInstance()

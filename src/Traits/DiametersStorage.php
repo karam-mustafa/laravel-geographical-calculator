@@ -15,6 +15,7 @@ trait DiametersStorage
 
     /**
      * @return int
+     *
      * @author karam mustafa
      */
     public function getDiameter()
@@ -23,11 +24,12 @@ trait DiametersStorage
     }
 
     /**
-     * diameter in kilo meter
+     * diameter in kilo meter.
      *
-     * @param  int  $diameter
+     * @param int $diameter
      *
      * @return DiametersStorage
+     *
      * @author karam mustafa
      */
     public function setDiameter($diameter = 0)
