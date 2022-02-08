@@ -22,7 +22,7 @@ trait Areas
         $this->setInStorage('pointsCount', count($this->getPoints()));
 
         // check if there are points or not.
-        if (!$this->getFromStorage('pointsCount')) {
+        if (! $this->getFromStorage('pointsCount')) {
             return false;
         }
 
@@ -96,10 +96,12 @@ trait Areas
 
         // otherwise mean that the distance between the given point is locate in the circle that calculated
         // from the main point and the diameter
-        $this->setInStorage('distanceToCompare',
+        $this->setInStorage(
+            'distanceToCompare',
             $this->setOptions(['units' => ['km']])->getDistance(function (Collection $item) {
                 return $item->first()['km'];
-            }));
+            })
+        );
 
         return $this->getFromStorage('distanceToCompare') > $this->getDiameter();
     }

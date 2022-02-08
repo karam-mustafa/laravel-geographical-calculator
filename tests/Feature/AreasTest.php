@@ -26,7 +26,7 @@ class AreasTest extends OrchestraTestCase
             'long' => 38.424795502212,
         ], $result);
     }
-    
+
     /**
      * test if the given point is in custom area, depending on main point and diameter
      *
@@ -53,6 +53,7 @@ class AreasTest extends OrchestraTestCase
 
         $this->assertFalse($result);
     }
+
     /**
      * get clean instance of geo class.
      *
