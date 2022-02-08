@@ -22,13 +22,13 @@ class AreasTest extends OrchestraTestCase
             ->getCenter();
 
         $this->assertEquals([
-            'lat' => 27.508023496931,
+            'lat'  => 27.508023496931,
             'long' => 38.424795502212,
         ], $result);
     }
 
     /**
-     * test if the given point is in custom area, depending on main point and diameter
+     * test if the given point is in custom area, depending on main point and diameter.
      *
      * @throws \Exception
      *
