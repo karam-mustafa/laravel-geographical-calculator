@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^9.5|^10",
         "friendsofphp/php-cs-fixer": "^3.0"
     },
     "prefer-stable": true,
